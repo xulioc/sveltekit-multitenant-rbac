@@ -1,53 +1,18 @@
-<script>
-	import Header from './Header.svelte';
-	import '../app.css';
+<script lang="ts">
+	import { dev } from '$app/environment';
+	import { env } from '$env/dynamic/public';
+	import { PUBLIC_UMAMI_URL, PUBLIC_UMAMI_WEBID } from '$env/static/public';
+	import { UmamiAnalytics } from '@lukulent/svelte-umami';
+	import { ModeWatcher, mode } from 'mode-watcher';
+	import { Toaster } from 'svelte-sonner';
+	import '../app.pcss';
 </script>
 
-<div class="app">
-	<Header />
+<ModeWatcher />
+<Toaster richColors theme={$mode} />
 
-	<main>
-		<slot />
-	</main>
+{#if !dev && 'PUBLIC_UMAMI_URL' in env}
+	<UmamiAnalytics websiteID={PUBLIC_UMAMI_WEBID} srcURL={PUBLIC_UMAMI_URL} />
+{/if}
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
-</div>
-
-<style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
-
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
-	}
-</style>
+<slot />

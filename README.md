@@ -1,38 +1,63 @@
-# create-svelte
+# Svelte MultiTenant RBAC Dashboard (BETA)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+<h3>
+One more Svelte starter, now with Multi-Tenancy and Role Based Access Control
+</h3>
 
-## Creating a project
+![dashboard](https://github.com/xulioc/skdash5/blob/main/static/images/dashboard.png?raw=true)
 
-If you're seeing this, you've probably already done this step. Congrats!
+---
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+##
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+<h3>
+<span style="color:red">
+DISCLAIMER: This project is not production ready. Svelte5 is not stable and RBAC is not fully tested. Use at your own risk.
+</h3>
+</span>
 
-## Developing
+## Demo
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Try different access roles and views [here](https://sveltekit-supabase-dashboard.vercel.app/).
 
-```bash
-npm run dev
+## Features
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+- [Multitenancy](https://github.com/xulioc/skdash5/blob/main/doc/MT.md) (Groups & Organizations)
+- [Role Based Acces Control](https://github.com/xulioc/skdash5/blob/main/doc/RBAC.md) (RBAC)
+- [Soft deletion](https://en.wiktionary.org/wiki/soft_deletion)
+- User tracking
 
-## Building
+## Technologies
 
-To create a production version of your app:
+- [Svelte5](https://svelte.dev/) and [SvelteKit](https://kit.svelte.dev/) application framework
+- [PostgreSQL](https://www.postgresql.org/) relational database
+- [DrizzleKit](https://orm.drizzle.team/) TypeScript ORM on top of PortgreSQL
+- [Lucia](https://lucia-auth.com/) auth library
+- [TailwindCSS](https://tailwindcss.com/) CSS framework
+- [Shadcn-svelte](https://www.shadcn-svelte.com/) UI component library
+- [Superforms](https://superforms.rocks/) form validation and SSR submission
+- [Formsnap](https://www.formsnap.dev/) form building
+- [Lucide Icons](https://lucide.dev/) icon pack
+- [Vercel](https://vercel.com/) deployment platform
+- [Umami](https://umami.is/) analytics
 
-```bash
-npm run build
-```
+## Contribute
 
-You can preview the production build with `npm run preview`.
+Feel free to contribute. Issues and Pull Requests are welcome.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## Resources
+
+https://github.com/delay/sveltekit-auth
+
+https://github.com/shamscorner/sveltekit-stackter
+
+https://github.com/daedalus-developers/auth-sveltekit/
+
+https://github.com/szig83/sveltekit-starter-svelte5
+
+https://github.com/yverek/kit-saas-starter
+
+https://www.shadcn-svelte.com/blocks
+
+RBAC
+https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf
