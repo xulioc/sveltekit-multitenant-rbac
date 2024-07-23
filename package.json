@@ -14,13 +14,13 @@
 		"test:unit": "vitest"
 	},
 	"devDependencies": {
-		"@fontsource/fira-mono": "^4.5.10",
-		"@neoconfetti/svelte": "^1.0.0",
+		"@fontsource/fira-mono": "^5.0.13",
+		"@neoconfetti/svelte": "^2.2.1",
 		"@playwright/test": "^1.45.3",
 		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/kit": "^2.5.18",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
-		"@types/eslint": "^8.56.11",
+		"@types/eslint": "^9.6.0",
 		"eslint": "^9.7.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.43.0",
@@ -33,7 +33,7 @@
 		"typescript": "^5.5.4",
 		"typescript-eslint": "8.0.0-alpha.51",
 		"vite": "^5.3.4",
-		"vitest": "^1.6.0"
+		"vitest": "^2.0.4"
 	},
 	"type": "module"
 }
