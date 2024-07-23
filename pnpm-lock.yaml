@@ -15,58 +15,58 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@playwright/test':
-        specifier: ^1.28.1
+        specifier: ^1.45.3
         version: 1.45.3
       '@sveltejs/adapter-auto':
-        specifier: ^3.0.0
+        specifier: ^3.2.2
         version: 3.2.2(@sveltejs/kit@2.5.18(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.195)(vite@5.3.4))(svelte@5.0.0-next.195)(vite@5.3.4))
       '@sveltejs/kit':
-        specifier: ^2.0.0
+        specifier: ^2.5.18
         version: 2.5.18(@sveltejs/vite-plugin-svelte@3.1.1(svelte@5.0.0-next.195)(vite@5.3.4))(svelte@5.0.0-next.195)(vite@5.3.4)
       '@sveltejs/vite-plugin-svelte':
-        specifier: ^3.0.0
+        specifier: ^3.1.1
         version: 3.1.1(svelte@5.0.0-next.195)(vite@5.3.4)
       '@types/eslint':
-        specifier: ^8.56.7
+        specifier: ^8.56.11
         version: 8.56.11
       eslint:
-        specifier: ^9.0.0
+        specifier: ^9.7.0
         version: 9.7.0
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@9.7.0)
       eslint-plugin-svelte:
-        specifier: ^2.36.0
+        specifier: ^2.43.0
         version: 2.43.0(eslint@9.7.0)(svelte@5.0.0-next.195)
       globals:
-        specifier: ^15.0.0
+        specifier: ^15.8.0
         version: 15.8.0
       prettier:
-        specifier: ^3.1.1
+        specifier: ^3.3.3
         version: 3.3.3
       prettier-plugin-svelte:
-        specifier: ^3.1.2
+        specifier: ^3.2.6
         version: 3.2.6(prettier@3.3.3)(svelte@5.0.0-next.195)
       svelte:
-        specifier: ^5.0.0-next.1
+        specifier: 5.0.0-next.195
         version: 5.0.0-next.195
       svelte-check:
-        specifier: ^3.6.0
+        specifier: ^3.8.4
         version: 3.8.4(postcss-load-config@3.1.4(postcss@8.4.39))(postcss@8.4.39)(svelte@5.0.0-next.195)
       tslib:
-        specifier: ^2.4.1
+        specifier: ^2.6.3
         version: 2.6.3
       typescript:
-        specifier: ^5.0.0
+        specifier: ^5.5.4
         version: 5.5.4
       typescript-eslint:
-        specifier: ^8.0.0-alpha.20
+        specifier: 8.0.0-alpha.51
         version: 8.0.0-alpha.51(eslint@9.7.0)(typescript@5.5.4)
       vite:
-        specifier: ^5.0.3
+        specifier: ^5.3.4
         version: 5.3.4
       vitest:
-        specifier: ^1.2.0
+        specifier: ^1.6.0
         version: 1.6.0
 
 packages:
