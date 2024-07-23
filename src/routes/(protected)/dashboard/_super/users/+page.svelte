@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import DashboardHelp from '$lib/components/DashboardHelp.svelte';
+	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { CirclePlus } from 'lucide-svelte';
 	import UsersTable from './UsersTable.svelte';
@@ -15,21 +17,34 @@
 	let user: any | undefined = undefined;
 </script>
 
-<div class="flex justify-end">
-	<Button
-		size="sm"
-		class="h-7 gap-1"
-		on:click={() => {
-			// group = { id: '' };
-			// newGroupDialog = true;
-		}}
-	>
-		<CirclePlus class="h-3.5 w-3.5" />
-		<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">Add user</span>
-	</Button>
-</div>
+<DashboardPage>
+	<span slot="title"></span>
+	<span slot="actions">
+		<Button
+			class="gap-1"
+			on:click={() => {
+				// group = { id: '' };
+				// newGroupDialog = true;
+			}}
+		>
+			<CirclePlus class="h-3.5 w-3.5" />
+			<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">Add user</span>
+		</Button>
+	</span>
 
-<UsersTable users={$page.data.users} {onAction} />
+	<span slot="content">
+		<UsersTable users={$page.data.users} {onAction} />
+	</span>
 
-<!-- <NewUserDialog data={$page.data.newUserForm} {user} bind:open={newUserDialog}></NewUserDialog> -->
-<!-- <DeleteGroupDialog bind:group bind:open={deleteGroupDialog}></DeleteGroupDialog> -->
+	<span slot="help">
+		<DashboardHelp>
+			<span slot="title">Users (superuser view)</span>
+			<span slot="description"
+				>Here superusers view system wide organizations and their groups. Superusers can create or
+				delete organizations and create or delete the gropus belonging to the organizations.</span
+			>
+		</DashboardHelp>
+	</span>
+
+	<!-- <span slot="footer" class="box"> Here page footer </span> -->
+</DashboardPage>

@@ -20,8 +20,6 @@
 			{#if $isExpanded}
 				{#if $isAllSubRowsExpanded}
 					<Button variant="secondary" size="icon"><ChevronDown /></Button>
-				{:else}
-					⏹️
 				{/if}
 			{:else}
 				<Button variant="secondary" size="icon"><ChevronRight /></Button>

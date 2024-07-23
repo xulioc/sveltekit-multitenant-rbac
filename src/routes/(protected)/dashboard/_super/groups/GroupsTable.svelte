@@ -29,7 +29,7 @@
 	const columns = table.createColumns([
 		table.display({
 			id: 'expanded',
-			header: 'Organization',
+			header: '',
 			cell: ({ row }, { pluginStates }) => {
 				const { isExpanded, canExpand, isAllSubRowsExpanded } =
 					pluginStates.expand.getRowState(row);
@@ -45,6 +45,11 @@
 			accessor: 'name',
 			header: 'Name'
 		}),
+
+		table.column({
+			accessor: (row: any) => row.createdBy?.email,
+			header: 'Owner'
+		}),
 		table.column({
 			id: 'logo',
 			accessor: 'logo',
@@ -52,10 +57,6 @@
 			cell: ({ value }) => {
 				return createRender(GroupLogo, { logo: value });
 			}
-		}),
-		table.column({
-			accessor: (row: any) => row.createdBy?.email,
-			header: 'Owner'
 		}),
 		table.column({
 			accessor: (row) => row,

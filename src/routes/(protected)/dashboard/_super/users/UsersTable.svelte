@@ -4,10 +4,13 @@
 	import * as Table from '$lib/components/ui/table';
 	import type { TableAction, TableActionCallback } from '$lib/types';
 	import { Render, Subscribe, createRender, createTable } from 'svelte-headless-table';
+	import Time from 'svelte-time/Time.svelte';
 	import { readable } from 'svelte/store';
 
 	export let users;
 	export let onAction: TableActionCallback;
+
+	console.log(users);
 
 	const actions: TableAction = [{ label: 'Detele user', action: 'delete' }];
 
@@ -23,6 +26,13 @@
 			header: 'Super',
 			cell: ({ value }) => {
 				return createRender(SuperBadge, { isSuper: value });
+			}
+		}),
+		table.column({
+			accessor: 'createdAt',
+			header: 'Created',
+			cell: ({ value }) => {
+				return createRender(Time, { timestamp: value, format: 'YYYY-MM-DD HH:mm:ss' });
 			}
 		}),
 		table.column({

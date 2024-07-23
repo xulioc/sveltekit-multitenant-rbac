@@ -2,9 +2,11 @@
 	import { fade } from 'svelte/transition';
 </script>
 
+<!-- TODO CHANGE TO SNIPPETS -->
+
 <div class="flex h-full flex-1 flex-col overflow-hidden p-2">
 	{#if $$slots.title}
-		<header class="mb-2 flex items-center">
+		<header class="mb-3 flex items-center">
 			<div class="flex h-10 grow">
 				{#if $$slots.icon}
 					<!-- <div class="btn btn-icon-sm h-full variant-filled-primary"> -->
@@ -12,7 +14,7 @@
 						<slot name="icon" />
 					</div>
 				{/if}
-				<div id="title" class="ml-2 h-full w-full text-2xl font-medium">
+				<div id="title" class="h-full w-full text-2xl font-medium">
 					<slot name="title" />
 				</div>
 			</div>
@@ -25,6 +27,13 @@
 	<main class="h-full">
 		<div class="h-full" transition:fade><slot name="content" /></div>
 	</main>
+
+	{#if $$slots.help}
+		<div class=""></div>
+		<footer class="w-full pt-2">
+			<slot name="help" />
+		</footer>
+	{/if}
 
 	{#if $$slots.footer}
 		<div class=""></div>
