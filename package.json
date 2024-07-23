@@ -1,5 +1,5 @@
 {
-	"name": "skdash5",
+	"name": "svelte-multitenant-rbac",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
