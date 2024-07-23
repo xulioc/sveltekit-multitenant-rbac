@@ -1,15 +1,20 @@
 <script lang="ts">
-	import ExpandIndicator from '$lib/components/ExpandIndicator.svelte';
 	import GroupLogo from '$lib/components/GroupLogo.svelte';
 	import TableActions from '$lib/components/TableActions.svelte';
 	import * as Table from '$lib/components/ui/table';
+	import type { TableAction } from '$lib/types';
 	import { Render, Subscribe, createRender, createTable } from 'svelte-headless-table';
 	import { addExpandedRows, addSubRows } from 'svelte-headless-table/plugins';
 	import { writable } from 'svelte/store';
+	import OrgExpand from './OrgExpand.svelte';
 
-	// export let groups;
-	// export let onAction: any;
-	let { groups = $bindable(), onAction } = $props();
+	let {
+		groups = $bindable(),
+		onAction
+	}: {
+		groups: unknown[];
+		onAction: TableAction;
+	} = $props();
 
 	const actions = [
 		{ action: 'add', label: 'Add group' },
@@ -24,11 +29,11 @@
 	const columns = table.createColumns([
 		table.display({
 			id: 'expanded',
-			header: '',
+			header: 'Organization',
 			cell: ({ row }, { pluginStates }) => {
 				const { isExpanded, canExpand, isAllSubRowsExpanded } =
 					pluginStates.expand.getRowState(row);
-				return createRender(ExpandIndicator, {
+				return createRender(OrgExpand, {
 					depth: row.depth,
 					isExpanded,
 					canExpand,
@@ -64,6 +69,8 @@
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
 		table.createViewModel(columns);
 	const { expandedIds } = pluginStates.expand;
+
+	console.log($pageRows);
 </script>
 
 <div class="rounded-md border">
