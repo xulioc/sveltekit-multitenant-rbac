@@ -20,7 +20,7 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 		console.log(form);
-		const res = await addUserToGroup(event, form);
+		const res = await addUserToGroup(event.locals.group || '', form);
 		// const res = null
 		if (res.error) {
 			console.log(res.error.message);
@@ -53,7 +53,7 @@ export const actions: Actions = {
 			return fail(400, { form });
 		}
 		console.log(form);
-		const res = await removeUserFromGroup(event, form);
+		const res = await removeUserFromGroup(form);
 		if (res.error) {
 			console.log(res.error.message);
 			return setError(form, null, res.error.message);

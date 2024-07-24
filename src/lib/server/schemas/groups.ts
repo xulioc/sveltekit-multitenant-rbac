@@ -1,4 +1,4 @@
-import { relations } from 'drizzle-orm';
+import { relations, type InferSelectModel } from 'drizzle-orm';
 import {
 	boolean,
 	json,
@@ -9,6 +9,7 @@ import {
 	uuid,
 	varchar
 } from 'drizzle-orm/pg-core';
+import { z } from 'zod';
 import { user } from './auth';
 
 export const group = pgTable('groups', {
@@ -20,6 +21,8 @@ export const group = pgTable('groups', {
 	createdBy: varchar('created_by').references(() => user.id),
 	deleted: boolean('deleted').default(false)
 });
+
+export type GroupSchema = InferSelectModel<typeof group>;
 
 export const groupsRelations = relations(group, ({ one, many }) => ({
 	parent: one(group, {
@@ -62,3 +65,14 @@ export const usersToGroupsRelations = relations(usersToGroups, ({ one }) => ({
 		relationName: 'user'
 	})
 }));
+
+export const newGroupSchema = z.object({
+	parent: z.string(),
+	name: z
+		.string({ required_error: 'Name is required' })
+		.min(6, { message: 'Name must be at least 6 characters' })
+		.trim(),
+	logo: z.any()
+});
+
+export type NewGroupSchema = typeof newGroupSchema;

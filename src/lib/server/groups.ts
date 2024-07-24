@@ -1,46 +1,47 @@
+import { dev } from '$app/environment';
 import { and, eq, isNull } from 'drizzle-orm';
 import { db } from './db';
-import { group, usersToGroups } from './schemas';
+import { group, usersToGroups, type NewGroupSchema, type UserSchema } from './schemas';
 
+// get first user group
 export const getMyFirstGroup = async (userId: string) => {
+	// query user groups
 	const groups = await db.query.usersToGroups.findMany({
 		where: (ug, { eq }) => eq(ug.userId, userId),
-		with: {
-			group: {
-				with: { parent: true }
-			}
-		}
+		with: { group: { with: { parent: true } } }
 	});
 
+	// find the first not deleted group
 	const group = groups.find((g) => !g.group.deleted && !g.group.parent?.deleted);
-	console.log('getMyFirstGroup > ', group);
+	if (dev) console.log('getMyFirstGroup > ', group);
+
 	return group;
 };
 
+// get user roles for a given user and group
 export const getGroupRoles = async (userId: string, group: string) => {
+	// query user roles in the group
 	const res = await db.query.usersToGroups.findFirst({
 		where: (ug, { eq }) => and(eq(ug.userId, userId), eq(ug.groupId, group))
 	});
-	// console.log(res)
-	if (res) {
-		return Object.values(res.roles as Array<string>);
-	}
 
-	return [] as Array<string>;
+	if (res) {
+		if (dev) console.log('getGroupRoles > ', res);
+		return Object.values(res.roles as Array<string>);
+	} else {
+		return [] as Array<string>;
+	}
 };
 
+// get all organization groups and return
 export const getAllGroups = async () => {
 	try {
 		const groups = await db.query.group.findMany({
 			where: (g, { eq }) => and(eq(g.deleted, false), isNull(g.parent)),
-			with: {
-				subgroups: {
-					where: (s, { eq }) => eq(s.deleted, false)
-				}
-			}
+			with: { subgroups: { where: (s, { eq }) => eq(s.deleted, false) } }
 		});
-		// console.log("GROUPS>", groups)
-		const flatGroups: any[] = [];
+
+		const flatGroups: unknown[] = [];
 		for (const g of groups) {
 			flatGroups.push({
 				id: g.id,
@@ -57,15 +58,16 @@ export const getAllGroups = async () => {
 				});
 			}
 		}
-		// console.log("GROUPS>", flatGroups)
 		const orderedGroups = flatGroups.sort();
-		// console.log("GROUPS>", orderedGroups)
+		if (dev) console.log('getAllGroups > ', orderedGroups);
 		return orderedGroups;
 	} catch {
+		console.log('getAllGroups > ERROR');
 		return null;
 	}
 };
 
+// get groups for a given user
 export const getMyGroups = async (userId: string) => {
 	let tmp = await db.query.usersToGroups.findMany({
 		where: (ug, { eq }) => eq(ug.userId, userId),
@@ -106,27 +108,23 @@ export const getMyGroups = async (userId: string) => {
 		})
 		.sort((a, b) => a.label - b.label); // b - a for reverse sort
 
+	if (dev) console.log('getMyGroups > ', groups);
 	return groups;
 };
 
+// get groups given a parent group
 export const getGroups = async (parent: string | null = null) => {
 	try {
 		let groups;
-		// IF PARENT IS NULL THEN LOOK FOR ORGS
+		// if parent is null then look for organizations
 		if (parent) {
 			groups = await db.query.group.findMany({
 				where: (group, { eq }) => and(eq(group.deleted, false), eq(group.parent, parent)),
 				with: {
-					createdBy: {
-						columns: { email: true }
-					},
+					createdBy: { columns: { email: true } },
 					subgroups: {
 						where: (group, { eq }) => eq(group.deleted, false),
-						with: {
-							createdBy: {
-								columns: { email: true }
-							}
-						}
+						with: { createdBy: { columns: { email: true } } }
 					}
 				}
 			});
@@ -134,37 +132,34 @@ export const getGroups = async (parent: string | null = null) => {
 			groups = await db.query.group.findMany({
 				where: (group, { eq }) => and(eq(group.deleted, false), isNull(group.parent)),
 				with: {
-					createdBy: {
-						columns: { email: true }
-					},
+					createdBy: { columns: { email: true } },
 					subgroups: {
 						where: (group, { eq }) => eq(group.deleted, false),
 						with: {
-							createdBy: {
-								columns: { email: true }
-							}
+							createdBy: { columns: { email: true } }
 						}
 					}
 				}
 			});
 		}
 
-		// for (const g of groups) {
-		// 	console.log('GROUP >', g)
-		// 	console.log('SUB >', g.subgroups)
-		// }
-
+		if (dev) console.log('getGroups > ', groups);
 		return groups;
 	} catch (e) {
-		dbg(e.message);
-		return { error: e.message };
+		console.log('getGroups > ', (e as Error).message);
+		return { error: (e as Error).message };
 	}
 };
 
-export const addGroup = async (user: any, newGroup: any, parent: string | null) => {
+// add group to a given user and parent
+export const addGroup = async (
+	user: UserSchema,
+	newGroup: NewGroupSchema,
+	parent: string | null
+) => {
 	let res;
 
-	console.log(user, newGroup, parent);
+	// console.log(user, newGroup, parent);
 
 	// create group
 	res = await db
@@ -190,87 +185,81 @@ export const addGroup = async (user: any, newGroup: any, parent: string | null) 
 		.returning();
 	console.log(res);
 
-	// res = await createBucket(groupId);
-	// console.log('BUCKET>', res);
-
 	return {};
 };
 
+// mark group as deleted
 export const deleteGroup = async (id: string) => {
-	// MARK AS DELETED
 	const res = await db.update(group).set({ deleted: true }).where(eq(group.id, id));
-	// console.log(res);
+	if (dev) console.log('deleteGroup > ', res);
 };
 
+// get users for a given group
 export const getUsers = async (group: string | null = null) => {
-	let users: any;
+	let users: unknown[] = [];
 
 	if (group) {
-		// READING GROUP USERS
-		console.log('read group users');
+		// read group users
+		// console.log('read group users');
 		users = await db.query.usersToGroups.findMany({
 			where: (ug, { eq }) => eq(ug.groupId, group),
-			with: {
-				user: {
-					columns: {
-						password: false
-					}
-				}
-			}
+			with: { user: { columns: { password: false } } }
 		});
-		console.log(users);
 		users = users.map((g) => {
 			return { id: g.user.id, email: g.user.email, roles: g.roles };
 		});
 	} else {
-		// READING ALL USERS
-		console.log('read all users');
+		// read all users
+		// console.log('read all users');
 		users = await db.query.user.findMany({
-			columns: {
-				password: false
-			}
+			columns: { password: false }
 		});
-		console.log(users);
 	}
-	// dbg(users)
+
+	if (dev) console.log('getUsers > ', users);
 	return users;
 };
 
-export const addUserToGroup = async (event, form) => {
+// add user to current group
+export const addUserToGroup = async (groupId: string, form) => {
 	try {
-		const res = await db
-			.insert(usersToGroups)
-			.values({
-				userId: form.data.id,
-				groupId: event.locals.group,
-				roles: [] //no roles but belogs to group
-			})
-			.returning();
-		console.log(res);
+		if (groupId) {
+			const res = await db
+				.insert(usersToGroups)
+				.values({
+					userId: form.data.id,
+					groupId: groupId,
+					roles: [] //no roles but belogs to group
+				})
+				.returning();
+			if (dev) console.log('addUserToGroup > ', res);
+		}
 		return {};
 	} catch (e) {
-		// dbg(e.message);
-		return { error: { message: e.message } };
+		console.log('addUserToGroup > ', (e as Error).message);
+		return { error: { message: (e as Error).message } };
 	}
 };
 
-export const removeUserFromGroup = async (event, form) => {
+// remove user from current group
+export const removeUserFromGroup = async (form) => {
 	try {
 		const res = await db.delete(usersToGroups).where(eq(usersToGroups.userId, form.data.id));
 		console.log(res);
 		return {};
 	} catch (e) {
-		dbg(e.message);
-		return { error: { message: e.message } };
+		console.log('removeUserFromGroup > ', (e as Error).message);
+		return { error: { message: (e as Error).message } };
 	}
 };
 
+// eddir user roles in a group
 export const editGroupRoles = async (user: string, group: string, roles: string[]) => {
 	const res = await db
 		.update(usersToGroups)
 		.set({ roles })
 		.where(and(eq(usersToGroups.userId, user), eq(usersToGroups.groupId, group)))
 		.returning();
-	console.log(res);
+	if (dev) console.log('editGroupRoles > ', res);
 	return {};
 };

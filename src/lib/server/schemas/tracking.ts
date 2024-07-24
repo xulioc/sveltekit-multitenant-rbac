@@ -1,4 +1,4 @@
-import { relations } from 'drizzle-orm';
+import { relations, type InferSelectModel } from 'drizzle-orm';
 import { bigserial, json, pgTable, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
 import { group, user } from '.';
 
@@ -11,6 +11,8 @@ export const tracking = pgTable('tracking', {
 		.notNull()
 		.references(() => group.id, { onDelete: 'cascade' })
 });
+
+export type TrackingSchema = InferSelectModel<typeof tracking>;
 
 export const trackingRelations = relations(tracking, ({ one }) => ({
 	createdBy: one(user, {

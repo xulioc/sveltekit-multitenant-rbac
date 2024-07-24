@@ -1,7 +1,6 @@
 import { dev } from '$app/environment';
 import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle';
 import { generateId, Lucia } from 'lucia';
-
 import { Argon2id } from 'oslo/password';
 import { db } from './db';
 import { addGroup } from './groups';
@@ -48,10 +47,11 @@ export const signUp = async (email: string, password: string) => {
 		return { error: { message: 'User not created' } };
 	}
 
-	console.log(newUser[0]);
+	if (dev) console.log(newUser[0]);
 
+	// create default organization for user with email as organization name
 	const org = await addGroup(newUser[0], { name: newUser[0].email }, null);
-	console.log(org);
+	if (dev) console.log(org);
 
 	// }
 
@@ -74,7 +74,7 @@ export const signIn = async (email: string, password: string) => {
 	if (!user) {
 		return { error: { message: 'User not found' } };
 	}
-	console.log(user);
+	if (dev) console.log(user);
 
 	const validPassword = await new Argon2id().verify(user.password, password);
 
