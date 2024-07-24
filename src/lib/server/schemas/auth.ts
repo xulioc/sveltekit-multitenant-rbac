@@ -1,4 +1,3 @@
-import type { InferSelectModel } from 'drizzle-orm';
 import { boolean, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 export const user = pgTable('auth_users', {
@@ -20,5 +19,3 @@ export const session = pgTable('auth_sessions', {
 		mode: 'date'
 	}).notNull()
 });
-
-export type UserSchema = InferSelectModel<typeof user>;

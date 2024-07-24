@@ -1,7 +1,13 @@
 <script lang="ts">
+	import { Ban } from 'lucide-svelte';
+
 	export let logo: string | undefined = undefined;
 </script>
 
-{#if logo}
-	<img alt="logo" class="h-10" src={logo} />
-{/if}
+<div class="flex h-10 w-36 items-center justify-center border-2">
+	{#if logo}
+		<img alt="logo" src={logo} />
+	{:else}
+		<Ban />
+	{/if}
+</div>

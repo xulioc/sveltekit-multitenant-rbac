@@ -7,14 +7,14 @@
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { ROLES } from '$lib/constants';
+	import { editUserSchema, type EditUserSchema } from '$lib/zodschemas/users';
 	import { TriangleAlert } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
-	import SuperDebug, { superForm, type Infer, type SuperValidated } from 'sveltekit-superforms';
+	import SuperDebug, { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { editUserSchema, type EditUserSchema } from './schemas';
 
 	export let open: boolean = false;
-	export let data: SuperValidated<Infer<EditUserSchema>>;
+	export let data: EditUserSchema;
 	export let user: any;
 
 	const form = superForm(data, {

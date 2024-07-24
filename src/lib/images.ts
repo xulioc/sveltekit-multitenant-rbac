@@ -1,3 +1,4 @@
+// convert image blob to base64
 export const blobToBase64 = (blob: Blob) => {
 	const reader = new FileReader();
 	reader.readAsDataURL(blob);

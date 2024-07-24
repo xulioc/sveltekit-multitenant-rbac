@@ -11,7 +11,7 @@
 	export let onAction: any;
 
 	const actions = [
-		// { action: 'add', label: 'Add subgroup' },
+		// { action: 'add', label: 'Add subgroup' }, // avoid deep groups
 		{ action: 'delete', label: 'Detele group' }
 	];
 
@@ -35,14 +35,6 @@
 				});
 			}
 		}),
-
-		table.column({
-			accessor: 'logo',
-			header: 'Logo',
-			cell: ({ value }) => {
-				return createRender(GroupLogo, { logo: value });
-			}
-		}),
 		table.column({
 			accessor: 'name',
 			header: 'Name'
@@ -50,6 +42,13 @@
 		table.column({
 			accessor: (row: any) => row.createdBy?.email,
 			header: 'Owner'
+		}),
+		table.column({
+			accessor: 'logo',
+			header: 'Logo',
+			cell: ({ value }) => {
+				return createRender(GroupLogo, { logo: value });
+			}
 		}),
 		table.column({
 			accessor: (row) => row,

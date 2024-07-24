@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
 	import { enhance } from '$app/forms';
-	import { invalidateAll } from '$app/navigation';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import * as Form from '$lib/components/ui/form';
@@ -26,14 +26,13 @@
 				action="?/delete"
 				use:enhance={() => {
 					return async ({ result, update }) => {
-						// console.log(result);
+						if (dev) console.log('?/delete > ', result);
 						open = false;
 						if (result.type == 'success') {
-							await invalidateAll();
 							toast.success('Group deleted');
-							// update();
+							update({ invalidateAll: true });
 						} else {
-							toast.error(result.message);
+							toast.error('Error deleting group ' + result.status);
 						}
 					};
 				}}

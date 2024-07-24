@@ -23,7 +23,7 @@
 	// Add a way to get home too.
 	// crumbs.unshift({ label: 'Home', dest: '/' });
 
-	console.log(crumbs);
+	// console.log(crumbs);
 </script>
 
 <Breadcrumb.Root>
@@ -33,11 +33,11 @@
 				<Breadcrumb.Item>
 					<Breadcrumb.Link href={b.dest}>
 						{#if b.dest.includes('_admin')}
-							<div class="text-primary">{b.label}</div>
+							<div class="text-lg font-medium text-primary">{b.label}</div>
 						{:else if b.dest.includes('_super')}
-							<div class="text-destructive">{b.label}</div>
+							<div class=" text-lg font-medium text-destructive">{b.label}</div>
 						{:else}
-							{b.label}
+							<div class="text-lg font-medium">{b.label}</div>
 						{/if}
 					</Breadcrumb.Link>
 				</Breadcrumb.Item>

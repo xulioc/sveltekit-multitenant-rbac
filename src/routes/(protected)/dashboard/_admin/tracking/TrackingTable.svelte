@@ -9,14 +9,7 @@
 	import { readable } from 'svelte/store';
 
 	export let events;
-	export let onAction: any;
-
-	console.log(events);
-
-	const actions = [
-		{ action: 'edit', label: 'Edit user' },
-		{ action: 'delete', label: 'Delete from group' }
-	];
+	// console.log(events);
 
 	const table = createTable(readable(events), {
 		sort: addSortBy(),
@@ -39,14 +32,6 @@
 			accessor: (item) => item.event.name,
 			header: 'Event'
 		})
-
-		// table.column({
-		// 	accessor: (row) => row,
-		// 	header: '',
-		// 	cell: ({ value }) => {
-		// 		return createRender(TableActions, { actions, row: value, onAction });
-		// 	}
-		// })
 	]);
 
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =

@@ -3,21 +3,12 @@
 	import DashboardHelp from '$lib/components/DashboardHelp.svelte';
 	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import TrackingTable from './TrackingTable.svelte';
-
-	const onAction = () => {};
 </script>
 
 <DashboardPage>
 	<span slot="content">
-		<TrackingTable events={$page.data.events} {onAction} />
+		<TrackingTable events={$page.data.events} />
 	</span>
-
-	<!-- <span slot="help">
-		<DashboardHelp>
-			<span slot="title">Tracking</span>"
-			<span slot="description">Tracking</span>"
-		</DashboardHelp>
-	</span> -->
 
 	<span slot="help">
 		<DashboardHelp>

@@ -8,10 +8,10 @@
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { blobToBase64 } from '$lib/images';
+	import { newGroupSchema, type NewGroupSchema } from '$lib/zodschemas/groups';
 	import { TriangleAlert } from 'lucide-svelte';
 	import SuperDebug, { superForm, type Infer, type SuperValidated } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { newGroupSchema, type NewGroupSchema } from './schemas';
 
 	export let open: boolean = false;
 	export let data: SuperValidated<Infer<NewGroupSchema>>;
@@ -70,7 +70,7 @@
 				<Dialog.Title>Add organization</Dialog.Title>
 				<Dialog.Description>Enter the name of the organization you want to add.</Dialog.Description>
 			{:else}
-				<Dialog.Title>Add group to '{group.name}'</Dialog.Title>
+				<Dialog.Title>Add group</Dialog.Title>
 				<Dialog.Description>Enter the name of the group you want to add.</Dialog.Description>
 			{/if}
 		</Dialog.Header>

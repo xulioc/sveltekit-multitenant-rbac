@@ -9,13 +9,12 @@ import {
 	uuid,
 	varchar
 } from 'drizzle-orm/pg-core';
-import { z } from 'zod';
 import { user } from './auth';
 
 export const group = pgTable('groups', {
 	id: uuid('id').primaryKey().defaultRandom(),
 	parent: uuid('parent_id'),
-	name: text('name').notNull().unique(),
+	name: text('name').notNull().unique(), // if name is unique then we have issue with softdelete
 	logo: text('logo'),
 	createdAt: timestamp('created_at').defaultNow(),
 	createdBy: varchar('created_by').references(() => user.id),
@@ -65,14 +64,3 @@ export const usersToGroupsRelations = relations(usersToGroups, ({ one }) => ({
 		relationName: 'user'
 	})
 }));
-
-export const newGroupSchema = z.object({
-	parent: z.string(),
-	name: z
-		.string({ required_error: 'Name is required' })
-		.min(6, { message: 'Name must be at least 6 characters' })
-		.trim(),
-	logo: z.any()
-});
-
-export type NewGroupSchema = typeof newGroupSchema;

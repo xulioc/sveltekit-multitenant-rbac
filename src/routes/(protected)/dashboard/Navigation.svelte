@@ -7,7 +7,6 @@
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import LightSwitch from '$lib/components/LightSwitch.svelte';
-	import Breadcrumb from './Breadcrumb.svelte';
 	import GroupSelect from './GroupSelect.svelte';
 
 	// console.log($page.data);
@@ -68,8 +67,6 @@
 		</Sheet.Content>
 	</Sheet.Root>
 	-->
-
-	<Breadcrumb />
 
 	<div class="relative ml-auto flex-1 md:grow-0">
 		<!-- <Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />

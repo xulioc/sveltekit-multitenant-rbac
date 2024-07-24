@@ -9,4 +9,4 @@ export const newGroupSchema = z.object({
 	logo: z.any()
 });
 
-export type NewGroupSchema = typeof newGroupSchema;
+export type NewGroupSchema = z.infer<typeof newGroupSchema>;

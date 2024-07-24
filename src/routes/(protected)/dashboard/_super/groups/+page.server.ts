@@ -1,12 +1,12 @@
 import { addGroup, deleteGroup, getGroups } from '$lib/server/groups';
+import { newGroupSchema, type NewGroupSchema, type UserSchema } from '$lib/server/schemas';
 import { logger } from '$lib/server/utils';
 import type { Actions } from '@sveltejs/kit';
 import { fail, message, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import type { PageServerLoad } from './$types';
-import { newGroupSchema } from './schemas';
 
-export const load: PageServerLoad = async (event) => {
+export const load: PageServerLoad = async () => {
 	const groups = await getGroups();
 	const newGroupForm = await superValidate(zod(newGroupSchema));
 	return { groups, newGroupForm };
@@ -23,23 +23,15 @@ export const actions: Actions = {
 		}
 
 		const parent = form.data.parent == '' ? null : form.data.parent;
-		let res;
 		try {
-			res = await addGroup(event.locals.user, form.data, parent);
-		} catch (err: any) {
-			// console.log(err);
-			return message(form, err.message, {
+			await addGroup(event.locals.user as UserSchema, form.data as NewGroupSchema, parent);
+		} catch (e) {
+			return message(form, (e as Error).message, {
 				status: 403
 			});
 		}
 
 		return message(form, 'Group added succesfully');
-
-		// if (res.error) {
-		// 	console.log(res.error.message);
-		// 	return setError(form, null, res.error.message);
-		// }
-		// return message(form, 'Organization created succesfully');
 	},
 
 	delete: async (event) => {

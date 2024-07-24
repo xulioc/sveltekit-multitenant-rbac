@@ -1,4 +1,8 @@
+import type { user } from '$lib/server/schemas';
+import type { InferSelectModel } from 'drizzle-orm';
 import { z } from 'zod';
+
+export type UserSchema = InferSelectModel<typeof user>;
 
 export const editUserSchema = z.object({
 	id: z.string(),
@@ -13,4 +17,4 @@ export const removeUserSchema = z.object({
 	id: z.string()
 });
 
-export type EditUserSchema = typeof editUserSchema;
+export type EditUserSchema = z.infer<typeof editUserSchema>;
