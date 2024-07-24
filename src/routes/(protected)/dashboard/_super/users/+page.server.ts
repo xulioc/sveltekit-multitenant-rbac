@@ -9,6 +9,6 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
 	delete: async () => {
-		console.log('SUPER USER DELETE');
+		console.log('TODO: SUPER USER DELETE');
 	}
 };

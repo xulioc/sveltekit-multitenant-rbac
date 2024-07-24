@@ -45,7 +45,7 @@ const accessHandler: Handle = async ({ event, resolve }) => {
 			event.locals.group = event.cookies.get('group');
 
 			if (!event.locals.group) {
-				// user has no group cookie so get first user group
+				// user has no group cookie so get first user group from database
 				const group = await getMyFirstGroup(event.locals.user.id);
 				event.locals.group = group?.groupId;
 
@@ -65,7 +65,7 @@ const accessHandler: Handle = async ({ event, resolve }) => {
 				return error(403, 'User has no roles in this group.');
 			}
 
-			// dont check permission for super user
+			// dont check permission for super user and resolve
 			if (event.locals.user?.super) return resolve(event);
 
 			// check route permission

@@ -26,7 +26,7 @@
 	<span slot="footer" class="box"> Here page footer </span>
 </DashboardPage>
 
-<style>
+<style lang="postcss">
 	.box {
 		@apply border-2;
 		@apply border-primary;
