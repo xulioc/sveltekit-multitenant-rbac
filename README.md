@@ -40,6 +40,7 @@ Try different access roles and views [here](https://sveltekit-supabase-dashboard
 - [Lucide Icons](https://lucide.dev/) icon pack
 - [Vercel](https://vercel.com/) deployment platform
 - [Umami](https://umami.is/) analytics
+- [Layerchart](https://www.layerchart.com/) charts
 
 ## Contribute
 

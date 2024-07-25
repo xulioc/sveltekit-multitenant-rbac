@@ -23,9 +23,8 @@
 		<DashboardHelp>
 			<span slot="title">Sample page</span>
 			<span slot="description">
-				This is a sample page with code from <a href="https://www.shadcn-svelte.com/blocks"
-					>shadcn-svelte</a
-				>
+				This is a sample page with code from
+				<a class="underline" href="https://www.shadcn-svelte.com/blocks">shadcn-svelte</a>.
 			</span>
 		</DashboardHelp>
 	</span>

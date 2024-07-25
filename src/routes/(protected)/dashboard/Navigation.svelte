@@ -6,15 +6,17 @@
 
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
+	import { env } from '$env/dynamic/public';
 	import LightSwitch from '$lib/components/LightSwitch.svelte';
 	import GroupSelect from './GroupSelect.svelte';
 
 	// console.log($page.data);
 </script>
 
-<header
-	class="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
->
+<header class="sticky top-0 z-30 my-4 flex items-center gap-4 border-b bg-background px-4 pb-4">
+	{#if 'PUBLIC_APP_NAME' in env}
+		<p class="text-xl">{env.PUBLIC_APP_NAME}</p>
+	{/if}
 	<!-- <Sheet.Root>
 		<Sheet.Trigger asChild let:builder>
 			<Button builders={[builder]} size="icon" variant="outline" class="sm:hidden">

@@ -42,7 +42,7 @@
 
 <!-- <pre>$sortKeys = {JSON.stringify($sortKeys, null, 2)}</pre> -->
 
-<div class="rounded-md border">
+<div class="h-full rounded-md border">
 	<Table.Root {...$tableAttrs}>
 		<Table.Header>
 			{#each $headerRows as headerRow (headerRow.id)}

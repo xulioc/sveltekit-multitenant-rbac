@@ -1,66 +1,60 @@
 <script lang="ts">
-	import 'chart.js/auto';
-	import type { ChartConfiguration } from 'chart.js/auto';
-	import 'chartjs-adapter-date-fns';
-	import { Line } from 'svelte-chartjs';
+	import { scaleTime } from 'd3-scale';
+	import { Axis, Chart, Highlight, Spline, Svg, Tooltip } from 'layerchart';
+	import { dayjs } from 'svelte-time/dayjs.js';
 
 	export let weather;
 
-	const series = weather.hourly.time.map((t: string, index: number) => {
+	const data = weather.hourly.time.map((t: string, index: number) => {
 		return {
-			x: new Date(t),
-			temp: weather.hourly.temperature_2m[index]
+			date: new Date(t),
+			value: weather.hourly.temperature_2m[index]
 		};
 	});
-
-	const options: ChartConfiguration = {
-		responsive: true,
-		maintainAspectRatio: false,
-		plugins: {
-			legend: {
-				display: false
-			}
-		},
-		interaction: {
-			mode: 'index',
-			intersect: false
-		},
-		scales: {
-			x: {
-				type: 'time',
-				time: {
-					unit: 'day'
-				}
-			},
-			y: {
-				ticks: {
-					callback: function (value: string) {
-						return value + ' ºC';
-					}
-				}
-			}
-		}
-	};
-
-	const data = {
-		datasets: [
-			{
-				label: 'Temperature',
-				data: series,
-				// fill: false,
-				borderWidth: 2,
-				pointRadius: 0.5,
-				backgroundColor: 'grey',
-				borderColor: 'grey',
-				lineTension: 0.8,
-				parsing: {
-					yAxisKey: 'temp'
-				}
-			}
-		]
-	};
 </script>
 
-<div class="p-5">
-	<Line {data} {options} />
+<div class="h-[300px] p-4">
+	<Chart
+		{data}
+		x="date"
+		xScale={scaleTime()}
+		y="value"
+		yDomain={[null, null]}
+		yNice
+		padding={{ left: 16, bottom: 24 }}
+		tooltip={{ mode: 'bisect-x' }}
+	>
+		<Svg>
+			<Axis
+				placement="left"
+				format={(d) => d + ' ' + weather.current_weather_units.temperature}
+				labelPlacement="start"
+				grid
+				rule
+				tickLabelProps={{
+					class: 'text-[13px]',
+					dx: -10
+				}}
+			></Axis>
+			<Axis
+				placement="bottom"
+				rule
+				tickLabelProps={{
+					class: 'text-[13px]',
+					dy: 10
+				}}
+			/>
+			<Spline class="stroke-primary stroke-2" />
+			<Highlight points lines />
+		</Svg>
+
+		<Tooltip header={(data) => dayjs(data.date).format('YYYY/MM/DD HH:MM')} let:data>
+			<!-- <TooltipItem label="value" value={data.value} /> -->
+			<p class="text-right">{data.value} ºC</p>
+		</Tooltip>
+
+		<!-- <Tooltip _variant="" let:data>
+			<TooltipItem label="t" value={data.value + 'ºC'} />
+		</Tooltip> -->
+	</Chart>
 </div>

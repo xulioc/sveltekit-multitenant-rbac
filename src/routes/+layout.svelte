@@ -11,7 +11,7 @@
 
 <LoadingBar />
 <ModeWatcher />
-<Toaster richColors theme={$mode} />
+<Toaster richColors theme={$mode} position="top-center" />
 
 {#if !dev && env.PUBLIC_UMAMI_URL && env.PUBLIC_UMAMI_WEBID}
 	<UmamiAnalytics websiteID={env.PUBLIC_UMAMI_WEBID} srcURL={env.PUBLIC_UMAMI_URL} />

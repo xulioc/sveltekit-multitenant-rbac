@@ -4,6 +4,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import { toast } from 'svelte-sonner';
 
+	import WeatherChart from '$lib/components/WeatherChart.svelte';
 	import { DefaultMarker, MapLibre } from 'svelte-maplibre';
 
 	console.log($page.data);
@@ -19,7 +20,10 @@
 			{#if !$page.data.location.error}
 				<Card.Content>
 					<p>You are in {$page.data.location.city}</p>
-					<p>The temperature is {$page.data.weather.current_weather.temperature} ºC</p>
+					<p>
+						The temperature is {$page.data.weather.current_weather.temperature}
+						{$page.data.weather.current_weather_units.temperature}
+					</p>
 				</Card.Content>
 
 				<Card.Footer>
@@ -64,8 +68,20 @@
 	</div>
 </div>
 
-<!-- CHART.JS STILL NOT WORKING WITH SVELTE5 -->
-<!-- <WeatherChart weather={$page.data.weather}></WeatherChart> -->
+{#if !$page.data.location.error}
+	<div>
+		<Card.Root class="h-full">
+			<Card.Header>
+				<Card.Title>Temperature forecast for {$page.data.location.city}</Card.Title>
+				<!-- <Card.Description>Card Description</Card.Description> -->
+			</Card.Header>
+
+			<Card.Content>
+				<WeatherChart weather={$page.data.weather}></WeatherChart>
+			</Card.Content>
+		</Card.Root>
+	</div>
+{/if}
 
 <style>
 	:global(.map) {
