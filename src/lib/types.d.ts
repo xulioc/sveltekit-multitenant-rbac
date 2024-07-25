@@ -1,3 +1,3 @@
 export type Roles = string[];
-export type TableAction = Array<{ label: string; action: string }>;
-export type TableActionCallback = (action: string, row: object) => void;
+export type TableAction = { label: string; action: string };
+export type TableActionCallback = (action: unknown, row: object) => void;

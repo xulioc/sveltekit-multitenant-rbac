@@ -7,8 +7,6 @@
 	import Input from '$lib/components/ui/input/input.svelte';
 	import { toast } from 'svelte-sonner';
 
-	// export let open: boolean = false;
-	// export let group: any | undefined = undefined;
 	let { open = $bindable(false), group = $bindable() }: { open: boolean; group: any | undefined } =
 		$props();
 </script>
@@ -35,7 +33,7 @@
 							toast.success('Group deleted');
 							// update();
 						} else {
-							toast.error(result.message);
+							toast.error('Error deleting group ' + result.status);
 						}
 					};
 				}}

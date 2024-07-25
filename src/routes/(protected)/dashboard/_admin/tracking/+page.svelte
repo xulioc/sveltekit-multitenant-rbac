@@ -12,11 +12,8 @@
 
 	<span slot="help">
 		<DashboardHelp>
-			<span slot="title">Users (superuser view)</span>
-			<span slot="description"
-				>Here superusers view system wide organizations and their groups. Superusers can create or
-				delete organizations and create or delete the gropus belonging to the organizations.</span
-			>
+			<span slot="title">Tracking</span>
+			<span slot="description">Here admins...</span>
 		</DashboardHelp>
 	</span>
 </DashboardPage>

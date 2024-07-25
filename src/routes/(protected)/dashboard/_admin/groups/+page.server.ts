@@ -1,6 +1,7 @@
 import { addGroup, deleteGroup, getGroups } from '$lib/server/groups';
 import { logger } from '$lib/server/utils';
 import { newGroupSchema, type NewGroupSchema } from '$lib/zodschemas/groups';
+import type { UserSchema } from '$lib/zodschemas/users';
 import type { Actions } from '@sveltejs/kit';
 import { fail, message, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
@@ -23,7 +24,7 @@ export const actions: Actions = {
 		const parent = event.locals.group || null;
 		try {
 			if (event.locals.user) {
-				await addGroup(event.locals.user, form.data as NewGroupSchema, parent);
+				await addGroup(event.locals.user as UserSchema, form.data as NewGroupSchema, parent);
 			} else {
 				throw new Error('User is null');
 			}

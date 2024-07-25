@@ -2,16 +2,18 @@
 	import DashboardHelp from '$lib/components/DashboardHelp.svelte';
 	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import { toast } from 'svelte-sonner';
+	import ExampleBlock from './ExampleBlock.svelte';
 </script>
 
 <DashboardPage>
-	<span slot="title" class="box">This is the page title </span>
 	<span slot="actions">
-		<Button>Action 1</Button>
-		<Button>Action 2</Button>
+		<Button on:click={() => toast.message('Hello')}>Action</Button>
 	</span>
 
-	<span slot="content" class="box">Here page content</span>
+	<span slot="content">
+		<ExampleBlock></ExampleBlock>
+	</span>
 
 	<span slot="help">
 		<DashboardHelp>

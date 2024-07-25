@@ -3,14 +3,16 @@
 	import GroupLogo from '$lib/components/GroupLogo.svelte';
 	import TableActions from '$lib/components/TableActions.svelte';
 	import * as Table from '$lib/components/ui/table';
+	import type { GroupSchema } from '$lib/server/schemas';
+	import type { TableAction, TableActionCallback } from '$lib/types';
 	import { Render, Subscribe, createRender, createTable } from 'svelte-headless-table';
 	import { addExpandedRows, addSubRows } from 'svelte-headless-table/plugins';
 	import { readable } from 'svelte/store';
 
 	export let groups;
-	export let onAction: any;
+	export let onAction: TableActionCallback;
 
-	const actions = [
+	const actions: TableAction[] = [
 		// { action: 'add', label: 'Add subgroup' }, // avoid deep groups
 		{ action: 'delete', label: 'Detele group' }
 	];
@@ -40,7 +42,7 @@
 			header: 'Name'
 		}),
 		table.column({
-			accessor: (row: any) => row.createdBy?.email,
+			accessor: (row: GroupSchema) => row.createdBy?.email,
 			header: 'Owner'
 		}),
 		table.column({

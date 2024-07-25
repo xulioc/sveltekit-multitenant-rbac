@@ -5,6 +5,7 @@
 	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import * as Alert from '$lib/components/ui/alert/index.js';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import type { GroupSchema } from '$lib/server/schemas';
 	import { CirclePlus } from 'lucide-svelte';
 	import DeleteGroupDialog from './DeleteGroupDialog.svelte';
 	import GroupsTable from './GroupsTable.svelte';
@@ -12,9 +13,9 @@
 
 	let newGroupDialog: boolean = false;
 	let deleteGroupDialog: boolean = false;
-	let group: any | undefined = undefined;
+	let group: GroupSchema | undefined = undefined;
 
-	const onAction = (action: any) => {
+	const onAction = (action: object) => {
 		if (dev) console.log('onAction > ', action);
 
 		switch (action.action) {
@@ -31,12 +32,11 @@
 </script>
 
 <DashboardPage>
-	<span slot="title"></span>
 	<span slot="actions">
 		<Button
 			class="gap-1"
 			on:click={() => {
-				group = { id: ' ' };
+				group = { id: ' ' } as GroupSchema;
 				newGroupDialog = true;
 			}}
 		>

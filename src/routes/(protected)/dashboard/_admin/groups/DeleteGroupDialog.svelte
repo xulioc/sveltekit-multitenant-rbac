@@ -8,7 +8,7 @@
 	import { toast } from 'svelte-sonner';
 
 	export let open: boolean = false;
-	export let group: any | undefined = undefined;
+	export let group: { name: string; id: string } | undefined = undefined;
 </script>
 
 <Dialog.Root bind:open>
@@ -17,7 +17,7 @@
 			<Dialog.Title>Delete group</Dialog.Title>
 			<Dialog.Description
 				>Confirm you want to delete
-				<span>'{group.name}'</span></Dialog.Description
+				<span>'{group?.name}'</span></Dialog.Description
 			>
 		</Dialog.Header>
 		<Dialog.Footer>
@@ -37,7 +37,7 @@
 					};
 				}}
 			>
-				<Input type="hidden" name="id" value={group.id} />
+				<Input type="hidden" name="id" value={group?.id} />
 				<Button
 					variant="outline"
 					on:click={() => {
