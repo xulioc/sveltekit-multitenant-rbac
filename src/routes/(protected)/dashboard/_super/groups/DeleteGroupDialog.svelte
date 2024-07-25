@@ -9,7 +9,8 @@
 
 	// export let open: boolean = false;
 	// export let group: any | undefined = undefined;
-	let { open = $bindable(false), group = $bindable() } = $props();
+	let { open = $bindable(false), group = $bindable() }: { open: boolean; group: any | undefined } =
+		$props();
 </script>
 
 <Dialog.Root bind:open>

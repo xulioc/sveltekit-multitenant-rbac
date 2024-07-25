@@ -1,7 +1,9 @@
 import { dev } from '$app/environment';
+import type { NewGroupSchema } from '$lib/zodschemas/groups';
+import type { UserSchema } from '$lib/zodschemas/users';
 import { and, eq, isNull } from 'drizzle-orm';
 import { db } from './db';
-import { group, usersToGroups, type NewGroupSchema, type UserSchema } from './schemas';
+import { usersToGroups } from './schemas';
 
 // get first user group
 export const getMyFirstGroup = async (userId: string) => {

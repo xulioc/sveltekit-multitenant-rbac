@@ -1,6 +1,7 @@
 import { addGroup, deleteGroup, getGroups } from '$lib/server/groups';
-import { newGroupSchema, type NewGroupSchema, type UserSchema } from '$lib/server/schemas';
 import { logger } from '$lib/server/utils';
+import { newGroupSchema, type NewGroupSchema } from '$lib/zodschemas/groups';
+import type { UserSchema } from '$lib/zodschemas/users';
 import type { Actions } from '@sveltejs/kit';
 import { fail, message, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';

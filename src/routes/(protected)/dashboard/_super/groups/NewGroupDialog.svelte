@@ -5,16 +5,17 @@
 	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { blobToBase64 } from '$lib/images';
+	import { newGroupSchema, type NewGroupSchema } from '$lib/zodschemas/groups';
 	import { TriangleAlert } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
-	import SuperDebug, { superForm } from 'sveltekit-superforms';
+	import SuperDebug, { superForm, type Infer, type SuperValidated } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { newGroupSchema } from './schemas';
 
-	// export let open: boolean = false;
-	// export let data: SuperValidated<Infer<NewGroupSchema>>;
-	// export let group: any;
-	let { open = $bindable(false), data, group } = $props();
+	let {
+		open = $bindable(false),
+		data,
+		group
+	}: { open: boolean; data: SuperValidated<Infer<NewGroupSchema>>; group: any } = $props();
 
 	const form = superForm(data, {
 		validators: zodClient(newGroupSchema),
