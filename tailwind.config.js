@@ -1,5 +1,5 @@
-import { fontFamily } from 'tailwindcss/defaultTheme';
 import typography from '@tailwindcss/typography';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -49,6 +49,10 @@ const config = {
 				card: {
 					DEFAULT: 'hsl(var(--card) / <alpha-value>)',
 					foreground: 'hsl(var(--card-foreground) / <alpha-value>)'
+				},
+				warning: {
+					DEFAULT: 'hsl(var(--warning) / <alpha-value>)',
+					foreground: 'hsl(var(--warning-foreground) / <alpha-value>)'
 				}
 			},
 			borderRadius: {
