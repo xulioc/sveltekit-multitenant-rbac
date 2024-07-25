@@ -12,7 +12,11 @@
 	</span>
 
 	<span slot="content">
-		<ExampleBlock></ExampleBlock>
+		<div class="overflow-auto">
+			<!-- <ScrollArea> -->
+			<ExampleBlock></ExampleBlock>
+			<!-- </ScrollArea> -->
+		</div>
 	</span>
 
 	<span slot="help">

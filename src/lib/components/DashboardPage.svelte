@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Breadcrumb from './Breadcrumb.svelte';
+	import ScrollArea from './ui/scroll-area/scroll-area.svelte';
 </script>
 
 <!-- TODO CHANGE TO SNIPPETS -->
@@ -15,13 +16,14 @@
 		</div>
 	</header>
 
-	<main in:fade class="h-full flex-1 overflow-auto">
-		<!-- <div class="box h-[2000px] border-2">HELLO</div> -->
-		<slot name="content" />
-	</main>
+	<ScrollArea>
+		<main in:fade class="h-full">
+			<slot name="content" />
+		</main>
+	</ScrollArea>
 
 	{#if $$slots.help}
-		<footer class="w-full pt-2">
+		<footer class="mt-auto w-full pt-2">
 			<slot name="help" />
 		</footer>
 	{/if}
