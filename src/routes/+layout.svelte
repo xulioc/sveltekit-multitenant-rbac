@@ -11,7 +11,20 @@
 
 <LoadingBar />
 <ModeWatcher />
-<Toaster richColors theme={$mode} position="top-center" expand={true} />
+<Toaster
+	theme={$mode}
+	position="top-center"
+	expand={true}
+	toastOptions={{
+		// unstyled: true,
+		classes: {
+			error: 'bg-error text-error-foregroung rounded-none', //red
+			success: ' bg-success text-success-foreground rounded-none', //green
+			warning: 'bg-warning text-warning-foreground rounded-none', //orange
+			info: 'bg-info text-info-foreground rounded-none' // blue
+		}
+	}}
+/>
 
 {#if !dev && env.PUBLIC_UMAMI_URL && env.PUBLIC_UMAMI_WEBID}
 	<UmamiAnalytics websiteID={env.PUBLIC_UMAMI_WEBID} srcURL={env.PUBLIC_UMAMI_URL} />

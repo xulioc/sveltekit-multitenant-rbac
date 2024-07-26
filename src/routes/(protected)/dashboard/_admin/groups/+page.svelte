@@ -5,6 +5,7 @@
 	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import * as Alert from '$lib/components/ui/alert/index.js';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import Card from '$lib/components/ui/card/card.svelte';
 	import type { GroupSchema } from '$lib/server/schemas';
 	import { CirclePlus } from 'lucide-svelte';
 	import DeleteGroupDialog from './DeleteGroupDialog.svelte';
@@ -46,14 +47,16 @@
 	</span>
 
 	<span slot="content">
-		{#if $page.data.groups.length}
-			<GroupsTable groups={$page.data.groups} {onAction}></GroupsTable>
-		{:else}
-			<Alert.Root>
-				<Alert.Title>There are no groups</Alert.Title>
-				<Alert.Description>You can add groups using the button above</Alert.Description>
-			</Alert.Root>
-		{/if}
+		<Card>
+			{#if $page.data.groups.length}
+				<GroupsTable groups={$page.data.groups} {onAction}></GroupsTable>
+			{:else}
+				<Alert.Root>
+					<Alert.Title>There are no groups</Alert.Title>
+					<Alert.Description>You can add groups using the button above</Alert.Description>
+				</Alert.Root>
+			{/if}
+		</Card>
 	</span>
 
 	<span slot="help">
