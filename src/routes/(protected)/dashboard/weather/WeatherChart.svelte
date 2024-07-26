@@ -13,7 +13,7 @@
 	});
 </script>
 
-<div class="h-[300px] p-4">
+<div class="h-[200px] p-4">
 	<Chart
 		{data}
 		x="date"

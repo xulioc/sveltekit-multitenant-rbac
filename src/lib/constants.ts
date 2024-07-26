@@ -1,4 +1,13 @@
-import { Building, CalendarSearch, ChartArea, Home, StickyNote, User, Users } from 'lucide-svelte';
+import {
+	Building,
+	CalendarSearch,
+	ChartArea,
+	Home,
+	StickyNote,
+	ThermometerSun,
+	User,
+	Users
+} from 'lucide-svelte';
 
 export const ROLES = [
 	{ rol: 'admin', label: 'Admin' },
@@ -28,6 +37,12 @@ export const MENU = {
 			id: 'home',
 			dest: '/dashboard',
 			icon: Home
+		},
+		{
+			label: 'Weather',
+			id: 'weather',
+			dest: '/dashboard/weather',
+			icon: ThermometerSun
 		},
 		{
 			label: 'Sample',

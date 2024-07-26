@@ -6,10 +6,10 @@ export const load: PageLoad = async (event) => {
 	console.log(location);
 
 	const weather_url = `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&hourly=temperature_2m&current_weather=true`;
-	console.log(weather_url);
+	// console.log(weather_url);
 	const weather_result = await event.fetch(weather_url);
 	const weather = await weather_result.json();
-	console.log(weather);
+	// console.log(weather);
 
 	return {
 		location: location,

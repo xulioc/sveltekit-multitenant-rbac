@@ -6,15 +6,17 @@
 
 <!-- TODO CHANGE TO SNIPPETS -->
 
-<div class="flex h-full flex-col p-2">
-	<header class="flex items-center pb-3">
-		<div class="flex grow">
-			<Breadcrumb />
-		</div>
-		<div class="h-full">
-			<slot name="actions" />
-		</div>
-	</header>
+<div class="flex h-full flex-col p-2" in:fade>
+	{#if $$slots.actions}
+		<header class="flex items-center pb-3">
+			<div class="flex grow">
+				<Breadcrumb />
+			</div>
+			<div class="h-full">
+				<slot name="actions" />
+			</div>
+		</header>
+	{/if}
 
 	<ScrollArea>
 		<main in:fade class="h-full">

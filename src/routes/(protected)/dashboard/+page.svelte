@@ -1,90 +1,28 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { Button } from '$lib/components/ui/button';
+	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Card from '$lib/components/ui/card';
+
+	import { page } from '$app/stores';
+	import { env } from '$env/dynamic/public';
+	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import { toast } from 'svelte-sonner';
-
-	import WeatherChart from '$lib/components/WeatherChart.svelte';
-	import { DefaultMarker, MapLibre } from 'svelte-maplibre';
-
-	console.log($page.data);
 </script>
 
-<div class="grid grid-cols-2 gap-4">
-	<div>
-		<Card.Root class="h-full">
+<DashboardPage>
+	<span slot="content">
+		<Card.Root>
 			<Card.Header>
-				<Card.Title>Welcome {$page.data.user.email}!</Card.Title>
+				<Card.Title>Hi {$page.data.user.email}!</Card.Title>
 				<!-- <Card.Description>Card Description</Card.Description> -->
 			</Card.Header>
-			{#if !$page.data.location.error}
+			{#if 'PUBLIC_APP_NAME' in env}
 				<Card.Content>
-					<p>You are in {$page.data.location.city}</p>
-					<p>
-						The temperature is {$page.data.weather.current_weather.temperature}
-						{$page.data.weather.current_weather_units.temperature}
-					</p>
+					Welcome to <span class="font-semibold">{env.PUBLIC_APP_NAME}</span>
 				</Card.Content>
-
-				<Card.Footer>
-					<Button on:click={() => toast('Thanks :)')}>I agree!</Button>
+				<Card.Footer class="flex justify-end">
+					<Button on:click={() => toast.success('You are welcome!')}>Thanks</Button>
 				</Card.Footer>
 			{/if}
 		</Card.Root>
-	</div>
-	<!-- ... -->
-	<div>
-		<!-- style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json" -->
-		<Card.Root>
-			{#if !$page.data.weather.error}
-				<Card.Header>
-					<Card.Title>Location</Card.Title>
-
-					<Card.Description
-						>{$page.data.location.city},
-						{$page.data.location.region},
-						{$page.data.location.country_name}.
-					</Card.Description>
-				</Card.Header>
-				<Card.Content>
-					<MapLibre
-						class="map"
-						center={[$page.data.location.longitude, $page.data.location.latitude]}
-						zoom={3}
-						style="https://demotiles.maplibre.org/style.json"
-					>
-						<DefaultMarker lngLat={[$page.data.location.longitude, $page.data.location.latitude]}
-						></DefaultMarker>
-					</MapLibre>
-				</Card.Content>
-			{:else}
-				<Card.Header>
-					<Card.Title>Location</Card.Title>
-
-					<Card.Description>Location not availale</Card.Description>
-				</Card.Header>
-			{/if}
-		</Card.Root>
-	</div>
-</div>
-
-{#if !$page.data.location.error}
-	<div>
-		<Card.Root class="h-full">
-			<Card.Header>
-				<Card.Title>Temperature forecast for {$page.data.location.city}</Card.Title>
-				<!-- <Card.Description>Card Description</Card.Description> -->
-			</Card.Header>
-
-			<Card.Content>
-				<WeatherChart weather={$page.data.weather}></WeatherChart>
-			</Card.Content>
-		</Card.Root>
-	</div>
-{/if}
-
-<style>
-	:global(.map) {
-		height: 200px;
-	}
-</style>
+	</span>
+</DashboardPage>
