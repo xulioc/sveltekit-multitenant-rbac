@@ -19,10 +19,10 @@
 				<Card.Content>
 					Welcome to <span class="font-semibold">{env.PUBLIC_APP_NAME}</span>
 				</Card.Content>
-				<Card.Footer class="flex justify-end">
-					<Button on:click={() => toast.success('You are welcome!')}>Thanks</Button>
-				</Card.Footer>
 			{/if}
+			<Card.Footer class="flex justify-end">
+				<Button on:click={() => toast.success('You are welcome!')}>Thanks</Button>
+			</Card.Footer>
 		</Card.Root>
 	</span>
 </DashboardPage>
