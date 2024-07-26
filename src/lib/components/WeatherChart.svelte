@@ -44,7 +44,7 @@
 					dy: 10
 				}}
 			/>
-			<Spline class="stroke-primary stroke-2" />
+			<Spline draw={{ duration: 2000 }} class="stroke-primary stroke-2" />
 			<Highlight points lines />
 		</Svg>
 

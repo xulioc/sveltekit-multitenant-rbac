@@ -4,7 +4,7 @@
 </script>
 
 {#if $navigating || $loading}
-	<div class="fixed-top z-100 absolute w-full">
+	<div class="fixed-top absolute z-50 w-full">
 		<div class="h-1.5 w-full overflow-hidden">
 			<div class="progress left-right h-full w-full bg-primary"></div>
 		</div>

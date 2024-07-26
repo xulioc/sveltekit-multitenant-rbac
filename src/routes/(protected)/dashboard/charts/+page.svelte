@@ -10,7 +10,7 @@
 	});
 </script>
 
-<div class="h-[300px] rounded border p-4">
+<div class="h-[300px] p-4">
 	<Chart
 		{data}
 		x="date"
@@ -24,7 +24,11 @@
 		<Svg>
 			<Axis placement="left" grid rule />
 			<Axis placement="bottom" rule />
-			<Area line={{ class: 'stroke-2 stroke-primary' }} class="fill-primary/30" />
+			<Area
+				draw={{ duration: 2000 }}
+				line={{ class: 'stroke-2 stroke-primary' }}
+				class="fill-primary/30"
+			/>
 			<Highlight points lines />
 		</Svg>
 

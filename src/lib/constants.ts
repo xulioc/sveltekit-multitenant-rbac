@@ -1,4 +1,4 @@
-import { Building, CalendarSearch, Home, StickyNote, User, Users } from 'lucide-svelte';
+import { Building, CalendarSearch, ChartArea, Home, StickyNote, User, Users } from 'lucide-svelte';
 
 export const ROLES = [
 	{ rol: 'admin', label: 'Admin' },
@@ -34,6 +34,12 @@ export const MENU = {
 			id: 'sample',
 			dest: '/dashboard/sample',
 			icon: StickyNote
+		},
+		{
+			label: 'Charts',
+			id: 'charts',
+			dest: '/dashboard/charts',
+			icon: ChartArea
 		}
 	],
 	admin: [

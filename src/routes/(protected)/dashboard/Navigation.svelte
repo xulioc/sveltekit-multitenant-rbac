@@ -13,7 +13,7 @@
 	// console.log($page.data);
 </script>
 
-<header class="sticky top-0 z-30 my-4 flex items-center gap-4 border-b bg-background px-4 pb-4">
+<header class="sticky top-0 z-30 flex items-center gap-4 border-b bg-background px-4 py-4">
 	{#if 'PUBLIC_APP_NAME' in env}
 		<p class="text-xl">{env.PUBLIC_APP_NAME}</p>
 	{/if}
