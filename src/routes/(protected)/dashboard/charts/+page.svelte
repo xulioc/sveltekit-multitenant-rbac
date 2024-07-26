@@ -3,6 +3,7 @@
 	import { scaleTime } from 'd3-scale';
 	import { Area, Axis, Chart, Highlight, Svg, Tooltip, TooltipItem } from 'layerchart';
 
+	import { cubicInOut } from 'svelte/easing';
 	import appleStock from './apple-stock.json';
 
 	const data = appleStock.map((d) => {
@@ -25,7 +26,7 @@
 			<Axis placement="left" grid rule />
 			<Axis placement="bottom" rule />
 			<Area
-				draw={{ duration: 2000 }}
+				draw={{ easing: cubicInOut, delay: 700 }}
 				line={{ class: 'stroke-2 stroke-primary' }}
 				class="fill-primary/30"
 			/>

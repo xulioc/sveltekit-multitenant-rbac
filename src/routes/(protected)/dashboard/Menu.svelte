@@ -22,7 +22,7 @@
 			<Tooltip.Root>
 				<Tooltip.Trigger asChild let:builder>
 					<div use:builder.action {...builder} class:bg-secondary={$page.url.pathname == m.dest}>
-						<Button href={m.dest} variant="ghost" class="h-12 w-12 p-0">
+						<Button href={m.dest} variant="ghost" class="h-12 w-12 rounded-none p-0">
 							<svelte:component this={m.icon} />
 						</Button>
 					</div>
@@ -37,7 +37,7 @@
 				<Tooltip.Root>
 					<Tooltip.Trigger asChild let:builder>
 						<div use:builder.action {...builder} class:bg-secondary={$page.url.pathname == m.dest}>
-							<Button href={m.dest} variant="ghost" class="h-12 w-12 p-0">
+							<Button href={m.dest} variant="ghost" class="h-12 w-12 rounded-none p-0">
 								<svelte:component this={m.icon} class="text-primary" />
 							</Button>
 						</div>
@@ -53,7 +53,7 @@
 				<Tooltip.Root>
 					<Tooltip.Trigger asChild let:builder>
 						<div use:builder.action {...builder} class:bg-secondary={$page.url.pathname == m.dest}>
-							<Button href={m.dest} variant="ghost" class="h-12 w-12 p-0">
+							<Button href={m.dest} variant="ghost" class="h-12 w-12 rounded-none p-0">
 								<svelte:component this={m.icon} class="text-destructive" />
 							</Button>
 						</div>
