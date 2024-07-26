@@ -17,6 +17,8 @@
 	expand={true}
 	toastOptions={{
 		// unstyled: true,
+		// https://github.com/emilkowalski/sonner/issues/4
+		// style: 'width:fit-content;', // not working
 		classes: {
 			error: 'bg-error text-error-foregroung rounded-none', //red
 			success: ' bg-success text-success-foreground rounded-none', //green
