@@ -4,7 +4,7 @@
 	import candlestick from './candlestick.json';
 </script>
 
-<div class="h-[300px] rounded border p-4">
+<div class="h-[300px] p-4">
 	<Chart
 		data={candlestick}
 		x="date"
