@@ -1,43 +1,63 @@
 <script>
-	import { Button } from '$lib/components/ui/button';
-	import { scaleTime } from 'd3-scale';
-	import { Area, Axis, Chart, Highlight, Svg, Tooltip, TooltipItem } from 'layerchart';
-
-	import { cubicInOut } from 'svelte/easing';
-	import appleStock from './apple-stock.json';
-
-	const data = appleStock.map((d) => {
-		return { date: new Date(d.date), value: d.value };
-	});
+	import DashboardHelp from '$lib/components/DashboardHelp.svelte';
+	import DashboardPage from '$lib/components/DashboardPage.svelte';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import * as Card from '$lib/components/ui/card';
+	import Arc from './Arc.svelte';
+	import Area from './Area.svelte';
+	import Candlestick from './Candlestick.svelte';
+	import Radar from './Radar.svelte';
 </script>
 
-<div class="h-[300px] p-4">
-	<Chart
-		{data}
-		x="date"
-		xScale={scaleTime()}
-		y="value"
-		yDomain={[0, null]}
-		yNice
-		padding={{ left: 16, bottom: 24 }}
-		tooltip={{ mode: 'bisect-x' }}
-	>
-		<Svg>
-			<Axis placement="left" grid rule />
-			<Axis placement="bottom" rule />
-			<Area
-				draw={{ easing: cubicInOut, delay: 700 }}
-				line={{ class: 'stroke-2 stroke-primary' }}
-				class="fill-primary/30"
-			/>
-			<Highlight points lines />
-		</Svg>
+<DashboardPage>
+	<span slot="actions">
+		<Button>Action</Button>
+	</span>
 
-		<!-- header={(data) => formatDate(data.date, "eee, MMMM do")} -->
-		<Tooltip _variant="invert" let:data>
-			<TooltipItem label="value" value={data.value} />
-		</Tooltip>
-	</Chart>
-</div>
+	<span slot="content">
+		<div class="grid grid-cols-2 gap-4">
+			<Card.Root>
+				<Card.Header>
+					<Card.Title>Area</Card.Title>
+				</Card.Header>
+				<Card.Content>
+					<Area></Area>
+				</Card.Content>
+			</Card.Root>
+			<Card.Root>
+				<Card.Header>
+					<Card.Title>Candlestick</Card.Title>
+				</Card.Header>
+				<Card.Content>
+					<Candlestick></Candlestick>
+				</Card.Content>
+			</Card.Root>
+			<Card.Root>
+				<Card.Header>
+					<Card.Title>Radar</Card.Title>
+				</Card.Header>
+				<Card.Content>
+					<Radar></Radar>
+				</Card.Content>
+			</Card.Root>
+			<Card.Root>
+				<Card.Header>
+					<Card.Title>Arc</Card.Title>
+				</Card.Header>
+				<Card.Content>
+					<Arc></Arc>
+				</Card.Content>
+			</Card.Root>
+		</div>
+	</span>
 
-<Button>Click me</Button>
+	<span slot="help">
+		<DashboardHelp>
+			<span slot="title">Charts</span>
+			<span slot="description">
+				Sample charts from
+				<a class="underline" href="https://www.layerchart.com/">layerchart</a>.
+			</span>
+		</DashboardHelp>
+	</span>
+</DashboardPage>

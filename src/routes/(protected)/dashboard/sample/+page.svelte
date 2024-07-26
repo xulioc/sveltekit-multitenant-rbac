@@ -8,7 +8,7 @@
 
 <DashboardPage>
 	<span slot="actions">
-		<Button on:click={() => toast.message('Hello')}>Action</Button>
+		<Button on:click={() => toast.success('Hello')}>Action</Button>
 	</span>
 
 	<span slot="content">
