@@ -5,6 +5,7 @@
 	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import * as Alert from '$lib/components/ui/alert/index.js';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import Card from '$lib/components/ui/card/card.svelte';
 	import { UserPlusIcon } from 'lucide-svelte';
 	import EditUserDialog from './EditUserDialog.svelte';
 	import UsersTable from './UsersTable.svelte';
@@ -33,14 +34,16 @@
 	</span>
 
 	<span slot="content">
-		{#if $page.data.users.length}
-			<UsersTable users={$page.data.users} {onAction} />
-		{:else}
-			<Alert.Root>
-				<Alert.Title>There are no users</Alert.Title>
-				<Alert.Description>Invite some users to your group</Alert.Description>
-			</Alert.Root>
-		{/if}
+		<Card>
+			{#if $page.data.users.length}
+				<UsersTable users={$page.data.users} {onAction} />
+			{:else}
+				<Alert.Root>
+					<Alert.Title>There are no users</Alert.Title>
+					<Alert.Description>Invite some users to your group</Alert.Description>
+				</Alert.Root>
+			{/if}
+		</Card>
 	</span>
 
 	<span slot="help">

@@ -4,7 +4,8 @@
 	import { Button } from '$lib/components/ui/button';
 
 	import LightSwitch from '$lib/components/LightSwitch.svelte';
-	import { LayoutDashboard } from 'lucide-svelte';
+	import ScrollArea from '$lib/components/ui/scroll-area/scroll-area.svelte';
+	import { LayoutGridIcon } from 'lucide-svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import README from '../../README.md?raw';
 </script>
@@ -20,20 +21,24 @@
 	{/if}
 </svelte:head>
 
-<div class="flex min-h-screen w-full flex-col">
-	<header class="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+<div class="flex h-full flex-col">
+	<header class="sticky top-0 z-30 flex items-center gap-4 border-b bg-background px-4 py-4">
 		<nav
 			class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6"
 		>
-			<a href="##" class="flex items-center gap-2 text-lg font-semibold md:text-base">
-				<LayoutDashboard class="h-6 w-6" />
-				<span class="sr-only">Acme Inc</span>
+			<a
+				href="/"
+				class="flex h-11 w-11 items-center justify-center bg-primary text-primary-foreground md:text-base"
+			>
+				<LayoutGridIcon class="h-5 w-5 transition-all group-hover:scale-75" />
 			</a>
-			{#if 'PUBLIC_APP_NAME' in env}
-				{env.PUBLIC_APP_NAME}
-			{:else}
-				Svelte MultiTenant RBAC Dashboard
-			{/if}
+			<p class="text-xl font-semibold">
+				{#if 'PUBLIC_APP_NAME' in env}
+					{env.PUBLIC_APP_NAME}
+				{:else}
+					Svelte MultiTenant RBAC Dashboard
+				{/if}
+			</p>
 		</nav>
 
 		<div class="ml-auto grid grid-flow-col gap-3">
@@ -42,9 +47,11 @@
 			<LightSwitch></LightSwitch>
 		</div>
 	</header>
-	<main class="">
-		<article class="prose max-w-full bg-slate-100 p-10">
-			<SvelteMarkdown source={README} />
-		</article>
+	<main class="flex flex-1 flex-col gap-4 overflow-y-hidden py-2">
+		<ScrollArea>
+			<article class="prose max-w-full p-10 dark:prose-invert">
+				<SvelteMarkdown source={README} />
+			</article>
+		</ScrollArea>
 	</main>
 </div>

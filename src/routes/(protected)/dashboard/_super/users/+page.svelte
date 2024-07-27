@@ -3,6 +3,7 @@
 	import DashboardHelp from '$lib/components/DashboardHelp.svelte';
 	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import Card from '$lib/components/ui/card/card.svelte';
 	import { CirclePlus } from 'lucide-svelte';
 	import UsersTable from './UsersTable.svelte';
 
@@ -33,7 +34,9 @@
 	</span>
 
 	<span slot="content">
-		<UsersTable users={$page.data.users} {onAction} />
+		<Card>
+			<UsersTable users={$page.data.users} {onAction} />
+		</Card>
 	</span>
 
 	<span slot="help">
