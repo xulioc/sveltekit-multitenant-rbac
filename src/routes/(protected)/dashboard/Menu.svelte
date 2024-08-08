@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
+	import * as Sheet from '$lib/components/ui/sheet';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 
 	import { MENU } from '$lib/constants';
@@ -66,19 +67,29 @@
 		<Separator></Separator>
 	</nav>
 	<nav class="mt-auto flex flex-col items-center gap-4 px-2 py-4">
-		<Tooltip.Root>
-			<Tooltip.Trigger asChild let:builder>
-				<a
-					href="##"
-					class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-					use:builder.action
-					{...builder}
-				>
-					<Settings class="h-5 w-5" />
-					<span class="sr-only">Settings</span>
-				</a>
-			</Tooltip.Trigger>
-			<Tooltip.Content side="right">Settings</Tooltip.Content>
-		</Tooltip.Root>
+		<Sheet.Root>
+			<Sheet.Trigger>
+				<Tooltip.Root>
+					<Tooltip.Trigger asChild let:builder>
+						<a
+							href="##"
+							class="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+							use:builder.action
+							{...builder}
+						>
+							<Settings class="h-5 w-5" />
+							<span class="sr-only">Settings</span>
+						</a>
+					</Tooltip.Trigger>
+					<Tooltip.Content side="right">Settings</Tooltip.Content>
+				</Tooltip.Root>
+			</Sheet.Trigger>
+			<Sheet.Content side="left">
+				<Sheet.Header>
+					<Sheet.Title>Settings</Sheet.Title>
+					<Sheet.Description>Settings example sheet.</Sheet.Description>
+				</Sheet.Header>
+			</Sheet.Content>
+		</Sheet.Root>
 	</nav>
 </aside>
