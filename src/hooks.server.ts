@@ -11,6 +11,8 @@ const authHandler: Handle = async ({ event, resolve }) => {
 	if (!sessionId) {
 		event.locals.user = null;
 		event.locals.session = null;
+		// DELETE GROUP COOKIE
+		event.cookies.delete('group', { httpOnly: false, path: '/' });
 		return resolve(event);
 	}
 
