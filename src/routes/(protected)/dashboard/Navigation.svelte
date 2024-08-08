@@ -120,8 +120,8 @@
 		<DropdownMenu.Content align="end">
 			<DropdownMenu.Label>{$page.data.user?.email}</DropdownMenu.Label>
 			<DropdownMenu.Separator />
-			<DropdownMenu.Item>Settings</DropdownMenu.Item>
-			<DropdownMenu.Item>Support</DropdownMenu.Item>
+			<!-- <DropdownMenu.Item>Settings</DropdownMenu.Item> -->
+			<!-- <DropdownMenu.Item>Support</DropdownMenu.Item> -->
 			<DropdownMenu.Separator />
 			<form method="POST" action="/auth/sign-out" use:enhance>
 				<DropdownMenu.Item><button>Sign out</button></DropdownMenu.Item>
