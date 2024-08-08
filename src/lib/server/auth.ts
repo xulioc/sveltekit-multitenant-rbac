@@ -1,5 +1,6 @@
 import { dev } from '$app/environment';
 import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle';
+import { eq } from 'drizzle-orm';
 import { generateId, Lucia } from 'lucia';
 import { Argon2id } from 'oslo/password';
 import { db } from './db';
@@ -94,4 +95,10 @@ export const signIn = async (email: string, password: string) => {
 	// }
 
 	return { id: user.id };
+};
+
+export const deleteUser = async (userId: string) => {
+	// mark user as deleted
+	const res = await db.update(user).set({ deleted: true }).where(eq(user.id, userId));
+	if (dev) console.log('deleteUser > ', res);
 };

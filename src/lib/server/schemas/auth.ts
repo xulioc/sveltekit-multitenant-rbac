@@ -6,7 +6,8 @@ export const user = pgTable('auth_users', {
 	password: text('password').notNull(),
 	super: boolean('super').default(false),
 	createdAt: timestamp('created_at').notNull().defaultNow(),
-	updatedAt: timestamp('updated_at').notNull().defaultNow()
+	updatedAt: timestamp('updated_at').notNull().defaultNow(),
+	deleted: boolean('deleted').default(false)
 });
 
 export const session = pgTable('auth_sessions', {

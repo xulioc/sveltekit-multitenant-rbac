@@ -3,7 +3,7 @@ import type { NewGroupSchema } from '$lib/zodschemas/groups';
 import type { UserSchema } from '$lib/zodschemas/users';
 import { and, eq, isNull } from 'drizzle-orm';
 import { db } from './db';
-import { usersToGroups } from './schemas';
+import { group, usersToGroups } from './schemas';
 
 // get first user group
 export const getMyFirstGroup = async (userId: string) => {
@@ -214,6 +214,7 @@ export const getUsers = async (group: string | null = null) => {
 		// read all users
 		// console.log('read all users');
 		users = await db.query.user.findMany({
+			where: (user, { eq }) => eq(user.deleted, false),
 			columns: { password: false }
 		});
 	}
