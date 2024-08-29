@@ -27,7 +27,9 @@ export const ACTIONS_PERMISSION = [
 	['_admin/groups?/add', ['admin']],
 	['_admin/groups?/delete', ['admin']],
 
-	['_admin/users?/edit', ['admin']]
+	['_admin/users?/edit', ['admin']],
+	['_admin/users?/invite', ['admin']],
+	['_admin/groups?/edit', ['admin']]
 ];
 
 export const MENU = {
@@ -90,11 +92,5 @@ export const MENU = {
 			dest: '/dashboard/_super/groups',
 			icon: Building
 		}
-		// {
-		// 	label: 'Tools',
-		// 	id: 'tools',
-		// 	dest: '/dashboard/_super/_tools',
-		// 	icon: Wrench
-		// }
 	]
 };

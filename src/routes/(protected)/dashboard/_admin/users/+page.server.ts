@@ -1,5 +1,10 @@
 import { addUserToGroup, editGroupRoles, getUsers, removeUserFromGroup } from '$lib/server/groups';
-import { addUserSchema, editUserSchema, removeUserSchema } from '$lib/zodschemas/users';
+import {
+	addUserSchema,
+	editUserSchema,
+	inviteUserSchema,
+	removeUserSchema
+} from '$lib/zodschemas/users';
 import { fail, type Actions } from '@sveltejs/kit';
 import { zod } from 'sveltekit-superforms/adapters';
 import { message, setError, superValidate } from 'sveltekit-superforms/client';
@@ -7,12 +12,29 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	const addUserForm = await superValidate(zod(addUserSchema));
+	const inviteUserForm = await superValidate(zod(inviteUserSchema));
 	const editUserForm = await superValidate(zod(editUserSchema));
 	const users = await getUsers(event.locals.group);
-	return { users, addUserForm, editUserForm };
+	return { users, addUserForm, editUserForm, inviteUserForm };
 };
 
 export const actions: Actions = {
+	add: async (event) => {
+		// console.log('add');
+		const form = await superValidate(event, zod(addUserSchema));
+		if (!form.valid) {
+			return fail(400, { form });
+		}
+		// console.log(form);
+		const res = await addUserToGroup(event.locals.group || '', form);
+		// const res = null
+		if (res.error) {
+			console.log(res.error.message);
+			return setError(form, res.error.message);
+		}
+		return message(form, 'User added succesfully');
+	},
+
 	add: async (event) => {
 		// console.log('add');
 		const form = await superValidate(event, zod(addUserSchema));

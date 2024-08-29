@@ -8,6 +8,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	if (event.locals.user) {
+		// redirect user if already signed in
 		redirect(302, '/dashboard');
 	}
 

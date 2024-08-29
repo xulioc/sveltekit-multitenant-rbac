@@ -5,6 +5,14 @@ import { and, eq, isNull } from 'drizzle-orm';
 import { db } from './db';
 import { group, usersToGroups } from './schemas';
 
+// get group by id
+export const getGroup = async (id: string) => {
+	const group = await db.query.group.findFirst({
+		where: (g, { eq }) => and(eq(g.deleted, false), eq(g.id, id))
+	});
+	return group;
+};
+
 // get first user group
 export const getMyFirstGroup = async (userId: string) => {
 	// query user groups

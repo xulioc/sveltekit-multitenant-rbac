@@ -71,7 +71,10 @@
 				<Dialog.Description>Enter the name of the organization you want to add.</Dialog.Description>
 			{:else}
 				<Dialog.Title>Add group</Dialog.Title>
-				<Dialog.Description>Enter the name of the group you want to add.</Dialog.Description>
+				<Dialog.Description
+					>Enter the name of the group you want to add. Paste an image if you want to use it as
+					logo.</Dialog.Description
+				>
 			{/if}
 		</Dialog.Header>
 

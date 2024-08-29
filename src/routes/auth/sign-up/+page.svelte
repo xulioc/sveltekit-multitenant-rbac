@@ -11,7 +11,7 @@
 	import SuperDebug, { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 
-	import { TriangleAlert } from 'lucide-svelte';
+	import { LoaderCircle } from 'lucide-svelte';
 	import { signInSchema } from '../schemas';
 
 	let { data } = $props();
@@ -19,7 +19,7 @@
 	const form = superForm(data.signInForm, {
 		validators: zodClient(signInSchema)
 	});
-	const { form: formData, enhance, message } = form;
+	const { form: formData, enhance, message, delayed } = form;
 </script>
 
 <Card.Root class="mx-auto max-w-sm">
@@ -61,7 +61,10 @@
 					<Form.FieldErrors />
 				</Form.Field>
 
-				<Button type="submit" class="w-full">Create an account</Button>
+				<Button type="submit" class="w-full">
+					Sign Up
+					{#if $delayed}<LoaderCircle class="ml-2 h-5 w-5 animate-spin"></LoaderCircle>{/if}
+				</Button>
 				<!-- <Button variant="outline" class="w-full">Sign up with GitHub</Button> -->
 			</div>
 
@@ -69,9 +72,9 @@
 				{#key $message}
 					{#if $message}
 						<Alert.Root variant="destructive">
-							<TriangleAlert></TriangleAlert>
-							<Alert.Title>{$message.text}</Alert.Title>
-							<!-- <Alert.Description></Alert.Description> -->
+							<!-- <TriangleAlert></TriangleAlert> -->
+							<Alert.Title>Error</Alert.Title>
+							<Alert.Description>{$message.text}</Alert.Description>
 						</Alert.Root>
 					{/if}
 				{/key}
@@ -79,7 +82,7 @@
 
 			<div class="mt-4 text-center text-sm">
 				Already have an account?
-				<a href="/auth/sign-in" class="underline"> Sign in </a>
+				<a href="/auth/sign-in" class="underline"> Sign In </a>
 			</div>
 		</form>
 	</Card.Content>

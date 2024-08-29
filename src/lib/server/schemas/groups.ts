@@ -1,8 +1,9 @@
-import { relations, type InferSelectModel } from 'drizzle-orm';
+import { eq, relations, type InferSelectModel } from 'drizzle-orm';
 import {
 	boolean,
 	json,
 	pgTable,
+	pgView,
 	primaryKey,
 	text,
 	timestamp,
@@ -16,10 +17,15 @@ export const group = pgTable('groups', {
 	parent: uuid('parent_id'),
 	name: text('name').notNull().unique(), // if name is unique then we have issue with softdelete
 	logo: text('logo'),
+	settings: json('settings').default({}),
 	createdAt: timestamp('created_at').defaultNow(),
 	createdBy: varchar('created_by').references(() => user.id),
 	deleted: boolean('deleted').default(false)
 });
+
+export const groupView = pgView('groups').as((qb) =>
+	qb.select().from(group).where(eq(group.deleted, false))
+);
 
 export type GroupSchema = InferSelectModel<typeof group>;
 

@@ -1,4 +1,4 @@
-# Svelte MultiTenant RBAC Dashboard (BETA)
+# Svelte MultiTenant RBAC Dashboard
 
 <h3>
 One more Svelte starter, now with Multi-Tenancy and Role Based Access Control
@@ -37,10 +37,10 @@ Try different access roles and views [here](https://sveltekit-supabase-dashboard
 - [Shadcn-svelte](https://www.shadcn-svelte.com/) UI component library
 - [Superforms](https://superforms.rocks/) form validation and SSR submission
 - [Formsnap](https://www.formsnap.dev/) form building
-- [Lucide Icons](https://lucide.dev/) icon pack
-- [Vercel](https://vercel.com/) deployment platform
-- [Umami](https://umami.is/) analytics
 - [Layerchart](https://www.layerchart.com/) charts
+- [Lucide Icons](https://lucide.dev/) icon pack
+- [Umami](https://umami.is/) analytics
+- [Vercel](https://vercel.com/) deployment platform
 
 ## Contribute
 

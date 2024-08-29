@@ -18,6 +18,8 @@
 	export let user: any;
 
 	const form = superForm(data, {
+		applyAction: true,
+		invalidateAll: true,
 		validators: zodClient(editUserSchema),
 		onError({ result }) {
 			// console.log(result);

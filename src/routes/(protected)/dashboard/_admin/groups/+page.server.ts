@@ -1,6 +1,6 @@
 import { addGroup, deleteGroup, getGroups } from '$lib/server/groups';
 import { logger } from '$lib/server/utils';
-import { newGroupSchema, type NewGroupSchema } from '$lib/zodschemas/groups';
+import { editGroupSchema, newGroupSchema, type NewGroupSchema } from '$lib/zodschemas/groups';
 import type { UserSchema } from '$lib/zodschemas/users';
 import type { Actions } from '@sveltejs/kit';
 import { fail, message, superValidate } from 'sveltekit-superforms';
@@ -10,7 +10,8 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async (event) => {
 	const groups = await getGroups(event.locals.group);
 	const newGroupForm = await superValidate(zod(newGroupSchema));
-	return { groups, newGroupForm };
+	const editGroupForm = await superValidate(zod(editGroupSchema));
+	return { groups, newGroupForm, editGroupForm };
 };
 
 export const actions: Actions = {
@@ -34,6 +35,8 @@ export const actions: Actions = {
 
 		return message(form, 'Group added succesfully');
 	},
+
+	edit: async (event) => {},
 
 	delete: async (event) => {
 		const data = Object.fromEntries(await event.request.formData());

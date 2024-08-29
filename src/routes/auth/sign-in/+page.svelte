@@ -1,17 +1,14 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-
 	import * as Alert from '$lib/components/ui/alert';
+	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Card from '$lib/components/ui/card';
 	import * as Form from '$lib/components/ui/form';
-
-	import { Button } from '$lib/components/ui/button/index.js';
 	import Input from '$lib/components/ui/input/input.svelte';
 
-	import { TriangleAlert } from 'lucide-svelte';
+	import { dev } from '$app/environment';
+	import { LoaderCircle } from 'lucide-svelte';
 	import SuperDebug, { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-
 	import { signInSchema } from '../schemas';
 
 	let { data } = $props();
@@ -19,7 +16,7 @@
 	const form = superForm(data.signInForm, {
 		validators: zodClient(signInSchema)
 	});
-	const { form: formData, enhance, message } = form;
+	const { form: formData, errors, enhance, message, delayed } = form;
 </script>
 
 <Card.Root class="mx-auto max-w-sm">
@@ -63,16 +60,19 @@
 						<Form.FieldErrors />
 					</Form.Field>
 				</div>
-				<Button type="submit" class="w-full">Login</Button>
+				<Button type="submit" class="w-full"
+					>Sign In
+					{#if $delayed}<LoaderCircle class="ml-2 h-5 w-5 animate-spin"></LoaderCircle>{/if}
+				</Button>
 				<!-- <Button variant="outline" class="w-full">Login with Google</Button> -->
 			</div>
 			<div class="mt-2">
 				{#key $message}
 					{#if $message}
 						<Alert.Root variant="destructive">
-							<TriangleAlert></TriangleAlert>
-							<Alert.Title>{$message.text}</Alert.Title>
-							<!-- <Alert.Description></Alert.Description> -->
+							<!-- <TriangleAlert class="h-4 w-4"></TriangleAlert> -->
+							<Alert.Title>Error</Alert.Title>
+							<Alert.Description>{$message.text}</Alert.Description>
 						</Alert.Root>
 					{/if}
 				{/key}
@@ -80,7 +80,7 @@
 
 			<div class="mt-4 text-center text-sm">
 				Don&apos;t have an account?
-				<a href="/auth/sign-up" class="underline"> Sign up </a>
+				<a href="/auth/sign-up" class="underline"> Sign Up </a>
 			</div>
 		</form>
 	</Card.Content>
