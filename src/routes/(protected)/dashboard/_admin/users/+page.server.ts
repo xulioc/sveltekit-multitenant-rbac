@@ -1,4 +1,10 @@
-import { addUserToGroup, editGroupRoles, getUsers, removeUserFromGroup } from '$lib/server/groups';
+import {
+	addUserToGroup,
+	editGroupRoles,
+	getUsers,
+	inviteUserToGroup,
+	removeUserFromGroup
+} from '$lib/server/groups';
 import {
 	addUserSchema,
 	editUserSchema,
@@ -35,20 +41,21 @@ export const actions: Actions = {
 		return message(form, 'User added succesfully');
 	},
 
-	add: async (event) => {
+	invite: async (event) => {
 		// console.log('add');
-		const form = await superValidate(event, zod(addUserSchema));
+		const form = await superValidate(event, zod(inviteUserSchema));
 		if (!form.valid) {
 			return fail(400, { form });
 		}
 		// console.log(form);
-		const res = await addUserToGroup(event.locals.group || '', form);
+		const res = await inviteUserToGroup(event.locals.group || '', form);
 		// const res = null
 		if (res.error) {
 			console.log(res.error.message);
-			return setError(form, res.error.message);
+			setError(form, 'email', '');
+			return message(form, res.error.message);
 		}
-		return message(form, 'User added succesfully');
+		return message(form, 'User invited succesfully');
 	},
 
 	edit: async (event) => {

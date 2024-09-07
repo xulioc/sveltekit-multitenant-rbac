@@ -252,6 +252,27 @@ export const addUserToGroup = async (groupId: string, form) => {
 	}
 };
 
+// invite user to current group
+export const inviteUserToGroup = async (groupId: string, form) => {
+	try {
+		if (groupId) {
+			const res = await db
+				.insert(usersToGroups)
+				.values({
+					userId: form.data.id,
+					groupId: groupId,
+					roles: [] //no roles but belogs to group
+				})
+				.returning();
+			if (dev) console.log('addUserToGroup > ', res);
+		}
+		return {};
+	} catch (e) {
+		console.log('addUserToGroup > ', (e as Error).message);
+		return { error: { message: (e as Error).message } };
+	}
+};
+
 // remove user from current group
 export const removeUserFromGroup = async (form) => {
 	try {
