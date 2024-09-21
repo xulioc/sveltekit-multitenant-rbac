@@ -5,7 +5,6 @@
 	import { page } from '$app/stores';
 	import { env } from '$env/dynamic/public';
 	import DashboardPage from '$lib/components/DashboardPage.svelte';
-	import { ChartArea, StickyNote, ThermometerSun } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
 
 	console.log('PAGE DATA > ', $page.data);
@@ -60,45 +59,6 @@
 				<Card.Footer class="flex justify-end">
 					<Button on:click={() => toast.success('You are welcome!')}>Thanks</Button>
 				</Card.Footer>
-			</Card.Root>
-
-			<Card.Root>
-				<Card.Header>
-					<Card.Title>Let's try things!</Card.Title>
-					<!-- <Card.Description>Card Description</Card.Description> -->
-				</Card.Header>
-				<Card.Content>
-					<ol class="list-inside list-disc">
-						<li>
-							Visit the dashboard sample pages
-							<ol class="ml-5 list-inside list-none">
-								<!-- <li><HomeIcon class="inline"></HomeIcon></li> -->
-								<li>
-									<div>
-										<ThermometerSun class="inline"></ThermometerSun>
-										Sample page with location and weather information with charts.
-									</div>
-								</li>
-								<li>
-									<div>
-										<StickyNote class="inline"></StickyNote>
-										Sample page with dashboard examples from shadcn-svelte.
-									</div>
-								</li>
-								<li>
-									<div>
-										<ChartArea class="inline"></ChartArea>
-										Sample page with charts from layerchart.
-									</div>
-								</li>
-							</ol>
-						</li>
-						<!-- ... -->
-					</ol>
-				</Card.Content>
-				<!-- <Card.Footer>
-					<p>Card Footer</p>
-				</Card.Footer> -->
 			</Card.Root>
 		</div>
 	</span>

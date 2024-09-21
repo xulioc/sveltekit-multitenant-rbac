@@ -10,7 +10,7 @@ export const editGroupSchema = z.object({
 export type EditGroupSchema = z.infer<typeof editGroupSchema>;
 
 export const newGroupSchema = z.object({
-	parent: z.string(),
+	parent: z.string().nullable(),
 	name: z
 		.string({ required_error: 'Name is required' })
 		.min(6, { message: 'Name must be at least 6 characters' })

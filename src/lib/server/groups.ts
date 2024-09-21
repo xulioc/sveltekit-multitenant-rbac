@@ -256,19 +256,29 @@ export const addUserToGroup = async (groupId: string, form) => {
 export const inviteUserToGroup = async (groupId: string, form) => {
 	try {
 		if (groupId) {
-			const res = await db
-				.insert(usersToGroups)
-				.values({
-					userId: form.data.id,
-					groupId: groupId,
-					roles: [] //no roles but belogs to group
-				})
-				.returning();
-			if (dev) console.log('addUserToGroup > ', res);
+			console.log(groupId, form);
+
+			const user = await db.query.user.findFirst({
+				where: (user, { eq }) => eq(user.email, form.data.email)
+			});
+			console.log(user);
+			if (user) {
+				const res = await db
+					.insert(usersToGroups)
+					.values({
+						userId: user.id,
+						groupId: groupId,
+						roles: [] //no roles but belogs to group
+					})
+					.returning();
+				if (dev) console.log('inviteUserToGroup > ', res);
+			} else {
+				return { error: { message: 'User not found' } };
+			}
 		}
 		return {};
 	} catch (e) {
-		console.log('addUserToGroup > ', (e as Error).message);
+		console.log('inviteUserToGroup > ', (e as Error).message);
 		return { error: { message: (e as Error).message } };
 	}
 };
