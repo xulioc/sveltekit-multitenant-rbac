@@ -1,17 +1,15 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-
 	import * as Alert from '$lib/components/ui/alert';
+	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Card from '$lib/components/ui/card';
 	import * as Form from '$lib/components/ui/form';
-
-	import { Button } from '$lib/components/ui/button/index.js';
 	import Input from '$lib/components/ui/input/input.svelte';
 
+	import { dev } from '$app/environment';
+	import { env } from '$env/dynamic/public';
+	import { Info, LoaderCircle } from 'lucide-svelte';
 	import SuperDebug, { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-
-	import { LoaderCircle } from 'lucide-svelte';
 	import { signInSchema } from '../schemas';
 
 	let { data } = $props();
@@ -84,6 +82,16 @@
 				Already have an account?
 				<a href="/auth/sign-in" class="underline"> Sign In </a>
 			</div>
+
+			{#if 'PUBLIC_DEMO_MODE' in env && env.PUBLIC_DEMO_MODE == 'true'}
+				<Alert.Root variant="destructive" class="mt-4">
+					<Info class="h-4 w-4"></Info>
+					<Alert.Title>DEMO MODE</Alert.Title>
+					<Alert.Description
+						>After sign-up you will have admin and super access rights</Alert.Description
+					>
+				</Alert.Root>
+			{/if}
 		</form>
 	</Card.Content>
 
