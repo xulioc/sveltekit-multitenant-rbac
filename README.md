@@ -16,10 +16,6 @@ DISCLAIMER: This project is not production ready. Svelte5 is not stable and RBAC
 </h3>
 </span>
 
-## Demo
-
-Try different access roles and views [here](https://sveltekit-supabase-dashboard.vercel.app/).
-
 ## Features
 
 - [Multitenancy](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/doc/MT.md) (Groups & Organizations)
