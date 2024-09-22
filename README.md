@@ -38,9 +38,62 @@ DISCLAIMER: This project is not production ready. Svelte5 is not stable and RBAC
 - [Umami](https://umami.is/) analytics
 - [Vercel](https://vercel.com/) deployment platform
 
+## Installation
+
+### Clone the repo
+
+```bash
+git clone https://github.com/xulioc/sveltekit-multitenant-rbac.git
+cd sveltekit-multitenant-rbac
+```
+
+### Setup environment variables
+
+Create a new `.env` file
+
+```bash
+cp .env.example .env
+```
+
+Edit your `.env` file
+
+```bash
+# MANDATORY VARIABLES
+PRIVATE_POSTGRES_URL="postgresql://<YOUR POSTGRESS URL>"
+
+```
+
+### Initialize database
+
+```bash
+pnpm db:generate
+pnpm db:push
+```
+
+To start in development mode:
+
+```bash
+pnpm dev
+```
+
+To build and start in production mode:
+
+```bash
+pnpm build
+pnpm preview
+```
+
+### Deploy
+
+To deploy to Vercel please follow instructions [here](https://vercel.com/guides/deploying-svelte-with-vercel).
+
 ## Contribute
 
 Feel free to contribute. Issues and Pull Requests are welcome.
+
+## License
+
+[MIT](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/LICENSE)
 
 ## Resources
 
