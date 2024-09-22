@@ -1,4 +1,5 @@
 import { dev } from '$app/environment';
+import { env } from '$env/dynamic/public';
 import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle';
 import { eq } from 'drizzle-orm';
 import { generateId, Lucia } from 'lucia';
@@ -35,10 +36,17 @@ export const signUp = async (email: string, password: string) => {
 	try {
 		const userId = generateId(15);
 		const hashedPassword = await new Argon2id().hash(password);
+		let superUser = false;
+
+		if ('PUBLIC_DEMO_MODE' in env && env.PUBLIC_DEMO_MODE == 'true') {
+			superUser = true;
+		}
+
 		const newUser = await db
 			.insert(user)
 			.values({
 				id: userId,
+				super: superUser,
 				email,
 				password: hashedPassword
 			})

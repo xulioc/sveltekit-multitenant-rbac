@@ -64,6 +64,7 @@ const accessHandler: Handle = async ({ event, resolve }) => {
 			event.locals.roles = await getGroupRoles(event.locals.user.id, event.locals.group);
 			// if the user has no roles in this group return error
 			if (!event.locals.roles.length) {
+				// event.cookies.delete('group', { httpOnly: false, path: '/' });
 				return error(403, 'User has no roles in this group.');
 			}
 
