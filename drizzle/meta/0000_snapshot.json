@@ -1,5 +1,5 @@
 {
-  "id": "7f884f40-f387-405b-92c5-4e4c415f2a73",
+  "id": "ae5fa4be-dc37-4462-9925-54935bbca687",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -138,6 +138,13 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "settings": {
+          "name": "settings",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'{}'::json"
         },
         "created_at": {
           "name": "created_at",
