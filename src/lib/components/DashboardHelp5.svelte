@@ -17,11 +17,4 @@
 			</div>
 		{/if}
 	</div>
-
-	<!-- <div class="ml-4">
-		<div class="text-lg font-semibold text-primary-foreground">{title}</div>
-		<div class="text-sm text-primary-foreground">
-			{description}
-		</div>
-	</div> -->
 </div>

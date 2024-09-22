@@ -4,7 +4,7 @@
 One more Svelte starter, now with Multi-Tenancy and Role Based Access Control
 </h3>
 
-![dashboard](https://github.com/xulioc/skdash5/blob/main/static/images/dashboard.png?raw=true)
+![dashboard](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/static/images/dashboard.png?raw=true)
 
 ---
 
@@ -22,8 +22,8 @@ Try different access roles and views [here](https://sveltekit-supabase-dashboard
 
 ## Features
 
-- [Multitenancy](https://github.com/xulioc/skdash5/blob/main/doc/MT.md) (Groups & Organizations)
-- [Role Based Acces Control](https://github.com/xulioc/skdash5/blob/main/doc/RBAC.md) (RBAC)
+- [Multitenancy](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/doc/MT.md) (Groups & Organizations)
+- [Role Based Acces Control](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/doc/RBAC.md) (RBAC)
 - [Soft deletion](https://en.wiktionary.org/wiki/soft_deletion)
 - User tracking
 
