@@ -3,7 +3,12 @@
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			user: import('lucia').User | null;
+			session: import('lucia').Session | null;
+			group: string | undefined;
+			roles: Array<string>;
+		}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}

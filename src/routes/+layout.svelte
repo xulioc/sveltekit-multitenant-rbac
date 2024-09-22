@@ -1,53 +1,35 @@
-<script>
-	import Header from './Header.svelte';
-	import '../app.css';
+<script lang="ts">
+	import { dev } from '$app/environment';
+	import { env } from '$env/dynamic/public';
+
+	import LoadingBar from '$lib/components/LoadingBar.svelte';
+	import { UmamiAnalytics } from '@lukulent/svelte-umami';
+	import { ModeWatcher, mode } from 'mode-watcher';
+	import { Toaster } from 'svelte-sonner';
+	import '../app.pcss';
 </script>
 
-<div class="app">
-	<Header />
-
-	<main>
-		<slot />
-	</main>
-
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
-</div>
-
-<style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
-
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
+<LoadingBar />
+<ModeWatcher />
+<Toaster
+	theme={$mode}
+	position="top-center"
+	expand={true}
+	toastOptions={{
+		// unstyled: true,
+		// https://github.com/emilkowalski/sonner/issues/4
+		// style: 'width:fit-content;', // not working
+		classes: {
+			error: 'bg-error text-error-foregroung rounded-none', //red
+			success: ' bg-success text-success-foreground rounded-none', //green
+			warning: 'bg-warning text-warning-foreground rounded-none', //orange
+			info: 'bg-info text-info-foreground rounded-none' // blue
 		}
-	}
-</style>
+	}}
+/>
+
+{#if !dev && env.PUBLIC_UMAMI_URL && env.PUBLIC_UMAMI_WEBID}
+	<UmamiAnalytics websiteID={env.PUBLIC_UMAMI_WEBID} srcURL={env.PUBLIC_UMAMI_URL} />
+{/if}
+
+<slot />

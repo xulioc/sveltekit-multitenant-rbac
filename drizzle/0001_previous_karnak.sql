@@ -1,0 +1,1 @@
+ALTER TABLE "groups" ADD COLUMN "settings" json DEFAULT '{}'::json;
