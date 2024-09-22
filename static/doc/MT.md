@@ -39,7 +39,7 @@ export const group = pgTable('groups', {
 });
 ```
 
-Users may have diferent roles in different groups. For example, a user may be an admin in one group and a regular user in another group. The system checks the user's roles in each group and let him access data and excecute the actions that are allowed for his roles. [(RBAC)](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/doc/RBAC.md)
+Users may have diferent roles in different groups. For example, a user may be an admin in one group and a regular user in another group. The system checks the user's roles in each group and let him access data and excecute the actions that are allowed for his roles. [(RBAC)](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/static/doc/RBAC.md)
 
 Groups, users and roles are linked in a many-to-many relationship. This is done with a table that has two foreign keys, one for each table.
 

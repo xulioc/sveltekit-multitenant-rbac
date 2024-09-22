@@ -18,8 +18,8 @@ DISCLAIMER: This project is not production ready. Svelte5 is not stable and RBAC
 
 ## Features
 
-- [Multitenancy](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/doc/MT.md) (Groups & Organizations)
-- [Role Based Acces Control](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/doc/RBAC.md) (RBAC)
+- [Multitenancy](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/static/doc/MT.md) (Groups & Organizations)
+- [Role Based Acces Control](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/static/doc/RBAC.md) (RBAC)
 - [Soft deletion](https://en.wiktionary.org/wiki/soft_deletion)
 - User tracking
 
