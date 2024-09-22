@@ -16,14 +16,10 @@ DISCLAIMER: This project is not production ready. Svelte5 is not stable and RBAC
 </h3>
 </span>
 
-## Demo
-
-Try different access roles and views [here](https://sveltekit-supabase-dashboard.vercel.app/).
-
 ## Features
 
-- [Multitenancy](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/doc/MT.md) (Groups & Organizations)
-- [Role Based Acces Control](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/doc/RBAC.md) (RBAC)
+- [Multitenancy](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/static/doc/MT.md) (Groups & Organizations)
+- [Role Based Acces Control](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/static/doc/RBAC.md) (RBAC)
 - [Soft deletion](https://en.wiktionary.org/wiki/soft_deletion)
 - User tracking
 
@@ -60,6 +56,6 @@ https://github.com/yverek/kit-saas-starter
 
 https://www.shadcn-svelte.com/blocks
 
-RBAC
 https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf
+
 https://github.com/startino/saas-starter
