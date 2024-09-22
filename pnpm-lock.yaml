@@ -2765,8 +2765,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  pmtiles@3.1.0:
-    resolution: {integrity: sha512-6JvgAQ8gElP1Ilg6ILM4KqleeKS+QcwpW8PXqhPWjRFmqF42yyUJ8sP3dZHQXm+G0HYXuw1kGlMTdVEs583pCQ==}
+  pmtiles@3.2.0:
+    resolution: {integrity: sha512-4v3Nw5xeMxaUReLZQTz3PyM4VM/Lx/Xp/rc2GGEWMl0nqAmcb+gjyi+eOTwfPu8LnB0ash36hz0dV76uYvih5A==}
 
   postcss-import@15.1.0:
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
@@ -5919,7 +5919,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.2
 
-  pmtiles@3.1.0:
+  pmtiles@3.2.0:
     dependencies:
       '@types/leaflet': 1.9.12
       fflate: 0.8.2
@@ -6348,7 +6348,7 @@ snapshots:
       just-compare: 2.3.0
       just-flush: 2.3.0
       maplibre-gl: 4.7.0
-      pmtiles: 3.1.0
+      pmtiles: 3.2.0
       svelte: 5.0.0-next.257
 
   svelte-markdown@0.4.1(svelte@5.0.0-next.257):

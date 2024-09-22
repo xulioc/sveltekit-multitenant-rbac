@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Info } from 'lucide-svelte';
-	let { title, description, children } = $props();
+	let { title = null, description = null, children } = $props();
 </script>
 
 <div class="flex flex-row items-center rounded bg-primary p-4 text-primary-foreground">

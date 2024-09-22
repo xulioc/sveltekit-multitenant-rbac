@@ -6,6 +6,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { loading } from '$lib/stores';
+	import { Building, Minus } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
 
 	const groups = $page.data.userGroups;
@@ -20,7 +21,7 @@
 
 	$: {
 		if (browser && selectedGroup) {
-			// console.log(selectedGroup);
+			console.log(selectedGroup);
 			if (group != selectedGroup.value) {
 				group = selectedGroup.value;
 				// console.log('changing to >', selectedGroup.value);
@@ -44,7 +45,16 @@
 		<Select.Content>
 			<Select.Group>
 				{#each groups as g}
-					<Select.Item value={g.id} label={g.label}>{g.label}</Select.Item>
+					<Select.Item value={g.id} label={g.name}>
+						<div class="pr-2">
+							{#if !g.org}
+								<Building></Building>
+							{:else}
+								<Minus></Minus>
+							{/if}
+						</div>
+						{g.name}
+					</Select.Item>
 				{/each}
 			</Select.Group>
 		</Select.Content>

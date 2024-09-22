@@ -3,7 +3,7 @@
 	import Breadcrumb from './Breadcrumb.svelte';
 	import ScrollArea from './ui/scroll-area/scroll-area.svelte';
 
-	let { actions, content, footer } = $props();
+	let { actions = null, children, content = null, footer = null } = $props();
 </script>
 
 <div class="flex h-full flex-col p-2" in:fade>
@@ -20,7 +20,10 @@
 
 	<ScrollArea>
 		<main in:fade class="h-full">
-			{@render content()}
+			{#if children}
+				{@render children()}
+			{/if}
+			{@render content?.()}
 		</main>
 	</ScrollArea>
 

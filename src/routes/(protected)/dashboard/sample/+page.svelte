@@ -1,35 +1,29 @@
 <script>
-	import DashboardHelp from '$lib/components/DashboardHelp.svelte';
-	import DashboardPage from '$lib/components/DashboardPage.svelte';
+	import DashboardHelp5 from '$lib/components/DashboardHelp5.svelte';
+	import DashboardPage5 from '$lib/components/DashboardPage5.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { toast } from 'svelte-sonner';
 	import ExampleBlock from './ExampleBlock.svelte';
 </script>
 
-<DashboardPage>
-	<span slot="actions">
+<DashboardPage5>
+	{#snippet actions()}
 		<Button on:click={() => toast.success('Hello')}>Action</Button>
-	</span>
+	{/snippet}
 
-	<span slot="content">
-		<div class="overflow-auto">
-			<!-- <ScrollArea> -->
-			<ExampleBlock></ExampleBlock>
-			<!-- </ScrollArea> -->
-		</div>
-	</span>
+	<div class="overflow-auto">
+		<!-- <ScrollArea> -->
+		<ExampleBlock></ExampleBlock>
+		<!-- </ScrollArea> -->
+	</div>
 
-	<span slot="help">
-		<DashboardHelp>
-			<span slot="title">Sample page</span>
-			<span slot="description">
-				This is a sample page with code from
-				<a class="underline" href="https://www.shadcn-svelte.com/blocks">shadcn-svelte</a>.
-			</span>
-		</DashboardHelp>
-	</span>
-	<span slot="footer" class="box"> Here page footer </span>
-</DashboardPage>
+	{#snippet footer()}
+		<DashboardHelp5 title="Sample page">
+			This is a sample page with code from
+			<a class="underline" href="https://www.shadcn-svelte.com/blocks">shadcn-svelte</a>.
+		</DashboardHelp5>
+	{/snippet}
+</DashboardPage5>
 
 <style lang="postcss">
 	.box {

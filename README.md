@@ -62,3 +62,4 @@ https://www.shadcn-svelte.com/blocks
 
 RBAC
 https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf
+https://github.com/startino/saas-starter

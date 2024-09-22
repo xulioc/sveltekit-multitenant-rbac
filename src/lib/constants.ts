@@ -1,4 +1,13 @@
-import { Building, ChartArea, Home, StickyNote, ThermometerSun, User, Users } from 'lucide-svelte';
+import {
+	Building,
+	CalendarSearch,
+	ChartArea,
+	Home,
+	StickyNote,
+	ThermometerSun,
+	User,
+	Users
+} from 'lucide-svelte';
 
 export const ROLES = [
 	{ rol: 'admin', label: 'Admin' },
@@ -62,13 +71,13 @@ export const MENU = {
 			id: 'groups',
 			dest: '/dashboard/_admin/groups',
 			icon: Users
+		},
+		{
+			label: 'Tracking (Admin)',
+			id: 'tracking',
+			dest: '/dashboard/_admin/tracking',
+			icon: CalendarSearch
 		}
-		// {
-		// 	label: 'Tracking (Admin)',
-		// 	id: 'tracking',
-		// 	dest: '/dashboard/_admin/tracking',
-		// 	icon: CalendarSearch
-		// }
 	],
 	super: [
 		{

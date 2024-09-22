@@ -1,22 +1,17 @@
 <script>
 	import { page } from '$app/stores';
-	import DashboardHelp from '$lib/components/DashboardHelp.svelte';
-	import DashboardPage from '$lib/components/DashboardPage.svelte';
+	import DashboardHelp5 from '$lib/components/DashboardHelp5.svelte';
+	import DashboardPage5 from '$lib/components/DashboardPage5.svelte';
 	import Card from '$lib/components/ui/card/card.svelte';
 	import TrackingTable from './TrackingTable.svelte';
 </script>
 
-<DashboardPage>
-	<span slot="content">
-		<Card>
-			<TrackingTable events={$page.data.events} />
-		</Card>
-	</span>
+<DashboardPage5>
+	<Card>
+		<TrackingTable events={$page.data.events} />
+	</Card>
 
-	<span slot="help">
-		<DashboardHelp>
-			<span slot="title">Tracking</span>
-			<span slot="description">Here admins...</span>
-		</DashboardHelp>
-	</span>
-</DashboardPage>
+	{#snippet footer()}
+		<DashboardHelp5 title="Tracking">Here admins can track user events</DashboardHelp5>
+	{/snippet}
+</DashboardPage5>
