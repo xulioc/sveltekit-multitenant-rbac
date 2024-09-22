@@ -20,7 +20,7 @@
 
 	$: {
 		if (browser && selectedGroup) {
-			console.log(selectedGroup);
+			// console.log(selectedGroup);
 			if (group != selectedGroup.value) {
 				group = selectedGroup.value;
 				// console.log('changing to >', selectedGroup.value);

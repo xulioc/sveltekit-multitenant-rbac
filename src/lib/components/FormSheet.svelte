@@ -9,7 +9,7 @@
 	type Props = {
 		open: boolean;
 		sForm: any;
-		fields: any;
+		children: any;
 		action: string;
 		title: string;
 		description: string;
@@ -18,7 +18,7 @@
 	let {
 		open = $bindable(false),
 		sForm = $bindable(),
-		fields,
+		children,
 		action,
 		title,
 		description
@@ -37,7 +37,7 @@
 				</Sheet.Description>
 			</Sheet.Header>
 
-			{@render fields()}
+			{@render children()}
 
 			<Sheet.Footer>
 				<Sheet.Close asChild let:builder>

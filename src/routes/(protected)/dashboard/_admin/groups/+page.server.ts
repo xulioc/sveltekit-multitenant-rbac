@@ -16,21 +16,21 @@ export const load: PageServerLoad = async (event) => {
 
 export const actions: Actions = {
 	add: async (event) => {
+		// console.log('groups actions add');
+
 		const form = await superValidate(event, zod(newGroupSchema));
 		if (!form.valid) {
 			logger.error('form not valid', form);
 			return fail(400, { form });
 		}
 
-		const parent = event.locals.group || null;
+		const parent = form.data.parent == '' ? null : form.data.parent;
 		try {
-			if (event.locals.user) {
-				await addGroup(event.locals.user as UserSchema, form.data as NewGroupSchema, parent);
-			} else {
-				throw new Error('User is null');
-			}
+			await addGroup(event.locals.user as UserSchema, form.data as NewGroupSchema, parent);
 		} catch (e) {
-			return message(form, (e as Error).message, { status: 403 });
+			return message(form, (e as Error).message, {
+				status: 403
+			});
 		}
 
 		return message(form, 'Group added succesfully');

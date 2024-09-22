@@ -71,7 +71,7 @@
 		table.createViewModel(columns);
 	const { expandedIds } = pluginStates.expand;
 
-	console.log($pageRows);
+	// console.log($pageRows);
 </script>
 
 <div class="rounded-md border">

@@ -1,22 +1,25 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-	import { page } from '$app/stores';
-	import DashboardHelp from '$lib/components/DashboardHelp.svelte';
-	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import * as Alert from '$lib/components/ui/alert/index.js';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Card from '$lib/components/ui/card/card.svelte';
+
+	import { dev } from '$app/environment';
+	import DashboardHelp5 from '$lib/components/DashboardHelp5.svelte';
+	import DashboardPage5 from '$lib/components/DashboardPage5.svelte';
+	import DeleteDialog from '$lib/components/DeleteDialog.svelte';
 	import type { GroupSchema } from '$lib/server/schemas';
 	import { Building, CirclePlus } from 'lucide-svelte';
-	import DeleteGroupDialog from './DeleteGroupDialog.svelte';
-	import EditGroupDialog from './EditGroupDialog.svelte';
+	import EditGroupSheet from './EditGroupSheet.svelte';
 	import GroupsTable from './GroupsTable.svelte';
-	import NewGroupDialog from './NewGroupDialog.svelte';
+	import NewGroupSheet from './NewGroupSheet.svelte';
 
-	let newGroupDialog: boolean = false;
-	let editGroupDialog: boolean = false;
-	let deleteGroupDialog: boolean = false;
-	let group: GroupSchema | undefined = undefined;
+	const { data } = $props();
+
+	let newGroupDialog: boolean = $state(false);
+	let editGroupDialog: boolean = $state(false);
+	let deleteGroupDialog: boolean = $state(false);
+	let deleteItem: any | undefined = $state();
+	let group: GroupSchema | undefined = $state(undefined);
 
 	const onAction = (action: object) => {
 		if (dev) console.log('onAction > ', action);
@@ -27,19 +30,23 @@
 				newGroupDialog = true;
 				break;
 			case 'delete':
-				group = action.row;
+				deleteItem = {
+					message: 'group',
+					name: action.row.name,
+					id: action.row.id
+				};
 				deleteGroupDialog = true;
 				break;
 		}
 	};
 </script>
 
-<DashboardPage>
-	<span slot="actions">
+<DashboardPage5>
+	{#snippet actions()}
 		<Button
 			class="gap-1"
 			on:click={() => {
-				group = $page.data.userGroup as GroupSchema;
+				group = data.userGroup as GroupSchema;
 				editGroupDialog = true;
 			}}
 		>
@@ -49,19 +56,21 @@
 		<Button
 			class="gap-1"
 			on:click={() => {
-				group = { id: ' ' } as GroupSchema;
+				group = data.userGroup as GroupSchema;
 				newGroupDialog = true;
 			}}
 		>
 			<CirclePlus class="h-3.5 w-3.5" />
 			<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">Add group</span>
 		</Button>
-	</span>
+	{/snippet}
 
-	<span slot="content">
+	{#snippet content()}
 		<Card>
-			{#if $page.data.groups.length}
-				<GroupsTable groups={$page.data.groups} {onAction}></GroupsTable>
+			{#if data.groups.length}
+				{#key data.groups}
+					<GroupsTable groups={data.groups} {onAction}></GroupsTable>
+				{/key}
 			{:else}
 				<Alert.Root>
 					<Alert.Title>There are no groups</Alert.Title>
@@ -69,31 +78,27 @@
 				</Alert.Root>
 			{/if}
 		</Card>
-	</span>
+	{/snippet}
 
-	<span slot="help">
-		<DashboardHelp>
-			<span slot="title">Groups</span>
-			<span slot="description" class="text-lg"
-				>Here admins can see a list of all groups in the selected organization along with their
-				owner (the user who created the group).
-				<div class="grid">
-					<p>- You can add groups to your organization by clicking the "Add group" button.</p>
-					<p>
-						- Once the new groups are created you will see them in the table and be able to delete
-						them also.
-					</p>
-					<p>
-						- If you refresh the page you can swith from groups with the select field on the top
-						right of the screen.
-					</p>
-				</div>
-			</span>
-		</DashboardHelp>
-	</span>
-</DashboardPage>
+	{#snippet footer()}
+		<DashboardHelp5 title="Groups">
+			Here admins can see a list of all groups in the selected organization along with their owner
+			(the user who created the group).
+			<div class="grid">
+				<p>- You can add groups to your organization by clicking the "Add group" button.</p>
+				<p>
+					- Once the new groups are created you will see them in the table and be able to delete
+					them also.
+				</p>
+				<p>
+					- If you refresh the page you can swith from groups with the select field on the top right
+					of the screen.
+				</p>
+			</div>
+		</DashboardHelp5>
+	{/snippet}
+</DashboardPage5>
 
-<NewGroupDialog data={$page.data.newGroupForm} {group} bind:open={newGroupDialog}></NewGroupDialog>
-<EditGroupDialog data={$page.data.editGroupForm} {group} bind:open={editGroupDialog}
-></EditGroupDialog>
-<DeleteGroupDialog bind:group bind:open={deleteGroupDialog}></DeleteGroupDialog>
+<NewGroupSheet {group} bind:open={newGroupDialog}></NewGroupSheet>
+<EditGroupSheet {group} bind:open={editGroupDialog}></EditGroupSheet>
+<DeleteDialog bind:open={deleteGroupDialog} item={deleteItem} action="?/delete" />

@@ -53,7 +53,7 @@
 	<Card>
 		{#if data.groups.length}
 			{#key data.groups}
-				<GroupsTable bind:groups={data.groups} {onAction}></GroupsTable>
+				<GroupsTable groups={data.groups} {onAction}></GroupsTable>
 			{/key}
 		{:else}
 			<Alert.Root>
@@ -69,7 +69,10 @@
 		title="Groups (superuser view)"
 		description="Here superusers view system wide organizations and their groups. Superusers can create or
 			delete organizations and create or delete the gropus belonging to the organizations."
-	/>
+	>
+		Here superusers view system wide organizations and their groups. Superusers can create or delete
+		organizations and create or delete the gropus belonging to the organizations.
+	</DashboardHelp5>
 {/snippet}
 
 <DashboardPage5 {actions} {content} {footer} />

@@ -3,7 +3,7 @@
 
 	import { page } from '$app/stores';
 	import FormSheet from '$lib/components/FormSheet.svelte';
-	import Input from '$lib/components/ui/input/input.svelte';
+	import { Input } from '$lib/components/ui/input/index.js';
 	import { newGroupSchema } from '$lib/zodschemas/groups';
 	import { toast } from 'svelte-sonner';
 	import { superForm } from 'sveltekit-superforms';
@@ -30,25 +30,11 @@
 	const { form: formData } = sForm;
 
 	$effect(() => {
-		$formData.parent = group?.id;
+		$formData = group;
 	});
 </script>
 
-<FormSheet bind:open bind:sForm action="?/add" title="Add" description="Add a new group">
-	<Form.Field form={sForm} name="parent">
-		<Form.Control let:attrs>
-			<Input {...attrs} type="hidden" bind:value={$formData.parent} />
-		</Form.Control>
-		<Form.FieldErrors />
-	</Form.Field>
-
-	<Form.Field form={sForm} name="logo">
-		<Form.Control let:attrs>
-			<Input {...attrs} type="hidden" bind:value={$formData.logo} />
-		</Form.Control>
-		<Form.FieldErrors />
-	</Form.Field>
-
+<FormSheet bind:open bind:sForm action="?/edit" title="Edit" description="Edit group">
 	<Form.Field form={sForm} name="name">
 		<Form.Control let:attrs>
 			<Form.Label>Name</Form.Label>

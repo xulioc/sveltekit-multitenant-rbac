@@ -1,9 +1,7 @@
-import { addGroup, deleteGroup, getGroups } from '$lib/server/groups';
-import { logger } from '$lib/server/utils';
-import { newGroupSchema, type NewGroupSchema } from '$lib/zodschemas/groups';
-import type { UserSchema } from '$lib/zodschemas/users';
+import { getGroups } from '$lib/server/groups';
+import { newGroupSchema } from '$lib/zodschemas/groups';
 import type { Actions } from '@sveltejs/kit';
-import { fail, message, superValidate } from 'sveltekit-superforms';
+import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import type { PageServerLoad } from './$types';
 
@@ -14,30 +12,11 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions: Actions = {
-	add: async (event) => {
-		console.log('groups actions add');
-
-		const form = await superValidate(event, zod(newGroupSchema));
-		if (!form.valid) {
-			logger.error('form not valid', form);
-			return fail(400, { form });
-		}
-
-		const parent = form.data.parent == '' ? null : form.data.parent;
-		try {
-			await addGroup(event.locals.user as UserSchema, form.data as NewGroupSchema, parent);
-		} catch (e) {
-			return message(form, (e as Error).message, {
-				status: 403
-			});
-		}
-
-		return message(form, 'Group added succesfully');
+	add: async () => {
+		console.log('please use add in _admin');
 	},
 
-	delete: async (event) => {
-		const data = Object.fromEntries(await event.request.formData());
-		// console.log(data);
-		await deleteGroup(data.id.toString());
+	delete: async () => {
+		console.log('please use delete in _admin');
 	}
 };

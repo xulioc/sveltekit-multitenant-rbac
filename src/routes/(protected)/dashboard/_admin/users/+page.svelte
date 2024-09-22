@@ -1,34 +1,35 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-	import { page } from '$app/stores';
-	import DashboardHelp from '$lib/components/DashboardHelp.svelte';
-	import DashboardPage from '$lib/components/DashboardPage.svelte';
 	import * as Alert from '$lib/components/ui/alert/index.js';
+
+	import { dev } from '$app/environment';
+	import DashboardHelp5 from '$lib/components/DashboardHelp5.svelte';
+	import DashboardPage5 from '$lib/components/DashboardPage5.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Card from '$lib/components/ui/card/card.svelte';
 	import { UserPlusIcon } from 'lucide-svelte';
-	import EditUserDialog from './EditUserDialog.svelte';
+	import EditUserSheet from './EditUserSheet.svelte';
 	import InviteUserSheet from './InviteUserSheet.svelte';
 	import UsersTable from './UsersTable.svelte';
 
-	let editUserDialog: boolean = false;
-	let inviteUserSheet: boolean = false;
+	const { data } = $props();
 
-	let user: any | undefined = undefined;
+	let editUserSheet: boolean = $state(false);
+	let inviteUserSheet: boolean = $state(false);
+	let user: any | undefined = $state(undefined);
 
 	const onAction = (action: any) => {
 		if (dev) console.log('onAction > ', action);
 		switch (action.action) {
 			case 'edit':
 				user = action.row;
-				editUserDialog = true;
+				editUserSheet = true;
 				break;
 		}
 	};
 </script>
 
-<DashboardPage>
-	<span slot="actions">
+<DashboardPage5>
+	{#snippet actions()}
 		<Button
 			class="gap-1"
 			on:click={() => {
@@ -38,12 +39,14 @@
 			<UserPlusIcon class="button-icon" />
 			<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">Invite user</span>
 		</Button>
-	</span>
+	{/snippet}
 
-	<span slot="content">
+	{#snippet content()}
 		<Card>
-			{#if $page.data.users.length}
-				<UsersTable bind:users={$page.data.users} {onAction} />
+			{#if data.users.length}
+				{#key data.users}
+					<UsersTable bind:users={data.users} {onAction} />
+				{/key}
 			{:else}
 				<Alert.Root>
 					<Alert.Title>There are no users</Alert.Title>
@@ -51,25 +54,21 @@
 				</Alert.Root>
 			{/if}
 		</Card>
-	</span>
+	{/snippet}
 
-	<span slot="help">
-		<DashboardHelp>
-			<span slot="title">Users</span>
-			<span slot="description" class="text-lg"
-				>Here admins can see a list of all users who belong to this group with their roles.
-				<div class="grid">
-					<p>
-						- You can edit user roles and delete users from the group (but not deleting the user
-						from the system). If you remove the 'admin' role from yourself then you will have big
-						trouble.
-					</p>
-					<p>- You can invite user to the group if the user is already registered in the system.</p>
-				</div>
-			</span>
-		</DashboardHelp>
-	</span>
-</DashboardPage>
+	{#snippet footer()}
+		<DashboardHelp5
+			title="Users"
+			description="Here admins can see a list of all users who belong to this group with their roles."
+		>
+			<p>
+				- You can edit user roles and delete users from the group (but not deleting the user from
+				the system). If you remove the 'admin' role from yourself then you will have big trouble.
+			</p>
+			<p>- You can invite user to the group if the user is already registered in the system.</p>
+		</DashboardHelp5>
+	{/snippet}
+</DashboardPage5>
 
-<EditUserDialog data={$page.data.editUserForm} {user} bind:open={editUserDialog}></EditUserDialog>
+<EditUserSheet bind:open={editUserSheet} bind:user></EditUserSheet>
 <InviteUserSheet bind:open={inviteUserSheet}></InviteUserSheet>

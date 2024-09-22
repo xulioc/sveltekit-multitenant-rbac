@@ -10,7 +10,7 @@
 	export let users;
 	export let onAction: TableActionCallback;
 
-	console.log(users);
+	// console.log(users);
 
 	const actions: TableAction = [{ label: 'Detele user', action: 'delete' }];
 
