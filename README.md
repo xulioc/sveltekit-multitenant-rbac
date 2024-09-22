@@ -97,18 +97,11 @@ Feel free to contribute. Issues and Pull Requests are welcome.
 
 ## Resources
 
-https://github.com/delay/sveltekit-auth
-
-https://github.com/shamscorner/sveltekit-stackter
-
-https://github.com/daedalus-developers/auth-sveltekit/
-
-https://github.com/szig83/sveltekit-starter-svelte5
-
-https://github.com/yverek/kit-saas-starter
-
-https://www.shadcn-svelte.com/blocks
-
-https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf
-
-https://github.com/startino/saas-starter
+- https://github.com/startino/saas-starter
+- https://github.com/delay/sveltekit-auth
+- https://github.com/shamscorner/sveltekit-stackter
+- https://github.com/daedalus-developers/auth-sveltekit/
+- https://github.com/szig83/sveltekit-starter-svelte5
+- https://github.com/yverek/kit-saas-starter
+- https://www.shadcn-svelte.com/blocks
+- https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf
