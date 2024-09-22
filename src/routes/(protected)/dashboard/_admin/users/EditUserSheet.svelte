@@ -39,7 +39,9 @@
 		$formData.roles = $formData.roles.filter((i) => i !== rol);
 	}
 
-	$formData = user;
+	$effect(() => {
+		$formData = user;
+	});
 </script>
 
 <FormSheet bind:open bind:sForm action="?/edit" title="Efit user" description="Edit user roles">

@@ -15,7 +15,7 @@
 
 	let editUserSheet: boolean = $state(false);
 	let inviteUserSheet: boolean = $state(false);
-	let user: any | undefined = $state(undefined);
+	let user: any | undefined = $state({ id: '', roles: [] });
 
 	const onAction = (action: any) => {
 		if (dev) console.log('onAction > ', action);
@@ -45,7 +45,7 @@
 		<Card>
 			{#if data.users.length}
 				{#key data.users}
-					<UsersTable bind:users={data.users} {onAction} />
+					<UsersTable users={data.users} {onAction} />
 				{/key}
 			{:else}
 				<Alert.Root>

@@ -39,30 +39,38 @@
 				break;
 		}
 	};
+
+	console.log(data.userGroup);
 </script>
 
 <DashboardPage5>
 	{#snippet actions()}
+		<!-- {#if !data.userGroup?.parent} -->
 		<Button
 			class="gap-1"
 			on:click={() => {
 				group = data.userGroup as GroupSchema;
+				// console.log(group);
 				editGroupDialog = true;
 			}}
 		>
 			<Building class="h-3.5 w-3.5" />
-			<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">Edit organization</span>
+			<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">Edit group</span>
 		</Button>
-		<Button
-			class="gap-1"
-			on:click={() => {
-				group = data.userGroup as GroupSchema;
-				newGroupDialog = true;
-			}}
-		>
-			<CirclePlus class="h-3.5 w-3.5" />
-			<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">Add group</span>
-		</Button>
+		<!-- {/if} -->
+
+		{#if !data.userGroup?.parent}
+			<Button
+				class="gap-1"
+				on:click={() => {
+					group = data.userGroup as GroupSchema;
+					newGroupDialog = true;
+				}}
+			>
+				<CirclePlus class="h-3.5 w-3.5" />
+				<span class="sr-only sm:not-sr-only sm:whitespace-nowrap">Add group</span>
+			</Button>
+		{/if}
 	{/snippet}
 
 	{#snippet content()}
@@ -71,6 +79,11 @@
 				{#key data.groups}
 					<GroupsTable groups={data.groups} {onAction}></GroupsTable>
 				{/key}
+			{:else if data.userGroup?.parent}
+				<Alert.Root>
+					<Alert.Title>There are no groups</Alert.Title>
+					<Alert.Description>Only organizations can have groups</Alert.Description>
+				</Alert.Root>
 			{:else}
 				<Alert.Root>
 					<Alert.Title>There are no groups</Alert.Title>

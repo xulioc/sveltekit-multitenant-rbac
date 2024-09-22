@@ -1,16 +1,6 @@
 <script>
 	import { scaleTime } from 'd3-scale';
-	import {
-		Area,
-		Axis,
-		Chart,
-		ChartClipPath,
-		Highlight,
-		Svg,
-		Tooltip,
-		TooltipItem
-	} from 'layerchart';
-	import { cubicInOut } from 'svelte/easing';
+	import { Area, Axis, Chart, Highlight, Svg, Tooltip, TooltipItem } from 'layerchart';
 	import area from './area.json';
 
 	const data = area.map((d) => {
@@ -39,9 +29,9 @@
             /> -->
 			<Highlight points lines />
 
-			<ChartClipPath initialWidth={0} tweened={{ width: { duration: 1000, easing: cubicInOut } }}>
-				<Area line={{ class: 'stroke-2 stroke-primary' }} class="fill-primary/30" />
-			</ChartClipPath>
+			<!-- <ChartClipPath initialWidth={0} tweened={{ width: { duration: 1000, easing: cubicInOut } }}> -->
+			<Area line={{ class: 'stroke-2 stroke-primary' }} class="fill-primary/30" />
+			<!-- </ChartClipPath> -->
 		</Svg>
 
 		<!-- header={(data) => formatDate(data.date, "eee, MMMM do")} -->

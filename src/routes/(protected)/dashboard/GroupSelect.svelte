@@ -37,7 +37,8 @@
 
 {#if groups.length > 1}
 	<Select.Root bind:selected={selectedGroup}>
-		<Select.Trigger class="w-[180px]">
+		<!-- <Select.Trigger class="w-[180px]"> -->
+		<Select.Trigger class="w-[250px]">
 			<Select.Value placeholder="Select a group" />
 		</Select.Trigger>
 		<Select.Content>

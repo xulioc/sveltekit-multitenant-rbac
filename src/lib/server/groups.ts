@@ -65,6 +65,7 @@ export const getAllGroups = async () => {
 					org: g.name,
 					name: s.name,
 					label: g.name + '>' + s.name
+					// label: '-' + s.name
 				});
 			}
 		}
