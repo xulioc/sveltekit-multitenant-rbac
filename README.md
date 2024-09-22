@@ -98,10 +98,17 @@ Feel free to contribute. Issues and Pull Requests are welcome.
 ## Resources
 
 - [sveltekit-auth](https://github.com/delay/sveltekit-auth) ![GitHub Repo stars](https://img.shields.io/github/stars/delay/sveltekit-auth?style=flat)
+
 - [sveltekit-supabase-dashboard](https://github.com/xulioc/sveltekit-supabase-dashboard) ![GitHub Repo stars](https://img.shields.io/github/stars/xulioc/sveltekit-supabase-dashboard?style=flat)
+
 - [auth-sveltekit](https://github.com/daedalus-developers/auth-sveltekit/) ![GitHub Repo stars](https://img.shields.io/github/stars/daedalus-developers/auth-sveltekit?style=flat)
+
 - [sveltekit-stackter](https://github.com/shamscorner/sveltekit-stackter) ![GitHub Repo stars](https://img.shields.io/github/stars/shamscorner/sveltekit-stackter?style=flat)
+
 - [saas-starter](https://github.com/startino/saas-starter) ![GitHub Repo stars](https://img.shields.io/github/stars/startino/saas-starter?style=flat)
+
 - [sveltekit-starter-svelte5](https://github.com/szig83/sveltekit-starter-svelte5) ![GitHub Repo stars](https://img.shields.io/github/stars/szig83/sveltekit-starter-svelte5?style=flat)
+
 - https://www.shadcn-svelte.com/blocks
+
 - https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf
