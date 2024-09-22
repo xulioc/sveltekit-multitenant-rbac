@@ -97,11 +97,11 @@ Feel free to contribute. Issues and Pull Requests are welcome.
 
 ## Resources
 
-- https://github.com/startino/saas-starter
-- https://github.com/delay/sveltekit-auth
-- https://github.com/shamscorner/sveltekit-stackter
-- https://github.com/daedalus-developers/auth-sveltekit/
-- https://github.com/szig83/sveltekit-starter-svelte5
-- https://github.com/yverek/kit-saas-starter
+- [sveltekit-auth](https://github.com/delay/sveltekit-auth) ![GitHub Repo stars](https://img.shields.io/github/stars/delay/sveltekit-auth)
+- [sveltekit-supabase-dashboard](https://github.com/xulioc/sveltekit-supabase-dashboard) ![GitHub Repo stars](https://img.shields.io/github/stars/xulioc/sveltekit-supabase-dashboard)
+- [auth-sveltekit](https://github.com/daedalus-developers/auth-sveltekit/) ![GitHub Repo stars](https://img.shields.io/github/stars/daedalus-developers/auth-sveltekit)
+- [sveltekit-stackter](https://github.com/shamscorner/sveltekit-stackter) ![GitHub Repo stars](https://img.shields.io/github/stars/shamscorner/sveltekit-stackter)
+- [saas-starter](https://github.com/startino/saas-starter) ![GitHub Repo stars](https://img.shields.io/github/stars/startino/saas-starter)
+- [sveltekit-starter-svelte5](https://github.com/szig83/sveltekit-starter-svelte5) ![GitHub Repo stars](https://img.shields.io/github/stars/szig83/sveltekit-starter-svelte5)
 - https://www.shadcn-svelte.com/blocks
 - https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf
