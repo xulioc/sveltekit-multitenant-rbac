@@ -1,3 +1,4 @@
+import { env } from '$env/dynamic/public';
 import { addGroup, deleteGroup, getGroups, updateGroup } from '$lib/server/groups';
 import { logger } from '$lib/server/utils';
 import { editGroupSchema, newGroupSchema, type NewGroupSchema } from '$lib/zodschemas/groups';
@@ -59,6 +60,12 @@ export const actions: Actions = {
 
 	delete: async (event) => {
 		const data = Object.fromEntries(await event.request.formData());
+
+		// disable deletion in demo mode
+		if ('PUBLIC_DEMO_MODE' in env && env.PUBLIC_DEMO_MODE == 'true') {
+			return fail(403, { message: 'DISABLED IN DEMO MODE' });
+		}
+
 		// TODO CHECK PERMISION ON GROUP IM GOING TO DELETE
 		await deleteGroup(data.id.toString());
 	}

@@ -17,7 +17,7 @@
 	} = $props();
 
 	const actions = [
-		{ action: 'add', label: 'Add group' },
+		// { action: 'add', label: 'Add group' },
 		{ action: 'delete', label: 'Detele group' }
 	];
 

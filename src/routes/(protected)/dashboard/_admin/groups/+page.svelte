@@ -112,6 +112,6 @@
 	{/snippet}
 </DashboardPage5>
 
-<NewGroupSheet {group} bind:open={newGroupDialog}></NewGroupSheet>
+<NewGroupSheet {group} bind:open={newGroupDialog} action="?/add"></NewGroupSheet>
 <EditGroupSheet {group} bind:open={editGroupDialog}></EditGroupSheet>
 <DeleteDialog bind:open={deleteGroupDialog} item={deleteItem} action="?/delete" />
