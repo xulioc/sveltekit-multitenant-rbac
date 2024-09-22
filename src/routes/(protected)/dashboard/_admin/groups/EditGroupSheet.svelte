@@ -4,18 +4,18 @@
 	import { page } from '$app/stores';
 	import FormSheet from '$lib/components/FormSheet.svelte';
 	import { Input } from '$lib/components/ui/input/index.js';
-	import { newGroupSchema } from '$lib/zodschemas/groups';
+	import { editGroupSchema } from '$lib/zodschemas/groups';
 	import { toast } from 'svelte-sonner';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 
 	let { open = $bindable(false), group }: { open: boolean; group: any } = $props();
 
-	let sForm = superForm($page.data.newGroupForm, {
+	let sForm = superForm($page.data.editGroupForm, {
 		applyAction: true,
 		invalidateAll: true,
 		resetForm: true,
-		validators: zodClient(newGroupSchema),
+		validators: zodClient(editGroupSchema),
 		onError({ result }) {
 			sForm.message.set(result.error.message || 'Unknown error');
 		},

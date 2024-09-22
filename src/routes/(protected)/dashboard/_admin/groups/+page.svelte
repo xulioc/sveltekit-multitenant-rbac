@@ -19,7 +19,7 @@
 	let editGroupDialog: boolean = $state(false);
 	let deleteGroupDialog: boolean = $state(false);
 	let deleteItem: any | undefined = $state();
-	let group: GroupSchema | undefined = $state(undefined);
+	let group: GroupSchema | undefined = $state({ id: '', name: '' });
 
 	const onAction = (action: object) => {
 		if (dev) console.log('onAction > ', action);
