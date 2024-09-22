@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1722104955317,
-      "tag": "0000_shiny_supernaut",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1723190434540,
-      "tag": "0001_previous_karnak",
+      "when": 1727018997077,
+      "tag": "0000_youthful_bastion",
       "breakpoints": true
     }
   ]

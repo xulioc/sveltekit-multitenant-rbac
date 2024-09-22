@@ -11,7 +11,11 @@
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 
-	let { open = $bindable(false), group }: { open: boolean; group: any } = $props();
+	let {
+		open = $bindable(false),
+		action,
+		group
+	}: { open: boolean; action: string; group: any } = $props();
 
 	let sForm = superForm($page.data.newGroupForm, {
 		applyAction: true,
@@ -63,7 +67,7 @@
 	}
 </script>
 
-<FormSheet bind:open bind:sForm action="?/add" title="Add" description="Add a new group">
+<FormSheet bind:open bind:sForm {action} title="Add" description="Add a new group">
 	<Form.Field form={sForm} name="parent">
 		<Form.Control let:attrs>
 			<Input {...attrs} type="hidden" bind:value={$formData.parent} />

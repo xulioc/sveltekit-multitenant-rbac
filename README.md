@@ -38,24 +38,77 @@ DISCLAIMER: This project is not production ready. Svelte5 is not stable and RBAC
 - [Umami](https://umami.is/) analytics
 - [Vercel](https://vercel.com/) deployment platform
 
+## Installation
+
+### Clone the repo
+
+```bash
+git clone https://github.com/xulioc/sveltekit-multitenant-rbac.git
+cd sveltekit-multitenant-rbac
+```
+
+### Setup environment variables
+
+Create a new `.env` file
+
+```bash
+cp .env.example .env
+```
+
+Edit your `.env` file
+
+```bash
+# MANDATORY VARIABLES
+PRIVATE_POSTGRES_URL="postgresql://<YOUR POSTGRESS URL>"
+
+```
+
+### Initialize database
+
+```bash
+pnpm db:generate
+pnpm db:push
+```
+
+To start in development mode:
+
+```bash
+pnpm dev
+```
+
+To build and start in production mode:
+
+```bash
+pnpm build
+pnpm preview
+```
+
+### Deploy
+
+To deploy to Vercel please follow instructions [here](https://vercel.com/guides/deploying-svelte-with-vercel).
+
 ## Contribute
 
 Feel free to contribute. Issues and Pull Requests are welcome.
 
+## License
+
+[MIT](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/LICENSE)
+
 ## Resources
 
-https://github.com/delay/sveltekit-auth
+- [sveltekit-auth](https://github.com/delay/sveltekit-auth) ![GitHub Repo stars](https://img.shields.io/github/stars/delay/sveltekit-auth?style=flat)
 
-https://github.com/shamscorner/sveltekit-stackter
+- [sveltekit-supabase-dashboard](https://github.com/xulioc/sveltekit-supabase-dashboard) ![GitHub Repo stars](https://img.shields.io/github/stars/xulioc/sveltekit-supabase-dashboard?style=flat)
 
-https://github.com/daedalus-developers/auth-sveltekit/
+- [auth-sveltekit](https://github.com/daedalus-developers/auth-sveltekit/) ![GitHub Repo stars](https://img.shields.io/github/stars/daedalus-developers/auth-sveltekit?style=flat)
 
-https://github.com/szig83/sveltekit-starter-svelte5
+- [sveltekit-stackter](https://github.com/shamscorner/sveltekit-stackter) ![GitHub Repo stars](https://img.shields.io/github/stars/shamscorner/sveltekit-stackter?style=flat)
 
-https://github.com/yverek/kit-saas-starter
+- [saas-starter](https://github.com/startino/saas-starter) ![GitHub Repo stars](https://img.shields.io/github/stars/startino/saas-starter?style=flat)
 
-https://www.shadcn-svelte.com/blocks
+- [sveltekit-starter-svelte5](https://github.com/szig83/sveltekit-starter-svelte5) ![GitHub Repo stars](https://img.shields.io/github/stars/szig83/sveltekit-starter-svelte5?style=flat)
 
-https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf
+- https://www.shadcn-svelte.com/blocks
 
-https://github.com/startino/saas-starter
+- https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf

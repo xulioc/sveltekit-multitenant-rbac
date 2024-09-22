@@ -306,3 +306,9 @@ export const editGroupRoles = async (user: string, group: string, roles: string[
 	if (dev) console.log('editGroupRoles > ', res);
 	return {};
 };
+
+// update group
+export const updateGroup = async (id, data) => {
+	const res = await db.update(group).set(data).where(eq(group.id, id));
+	return {};
+};

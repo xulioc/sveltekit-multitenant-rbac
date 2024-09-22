@@ -1,4 +1,5 @@
-import { addGroup, deleteGroup, getGroups } from '$lib/server/groups';
+import { env } from '$env/dynamic/public';
+import { addGroup, deleteGroup, getGroups, updateGroup } from '$lib/server/groups';
 import { logger } from '$lib/server/utils';
 import { editGroupSchema, newGroupSchema, type NewGroupSchema } from '$lib/zodschemas/groups';
 import type { UserSchema } from '$lib/zodschemas/users';
@@ -36,10 +37,36 @@ export const actions: Actions = {
 		return message(form, 'Group added succesfully');
 	},
 
-	edit: async (event) => {},
+	edit: async (event) => {
+		console.log('edit group');
+		const form = await superValidate(event, zod(editGroupSchema));
+		if (!form.valid) {
+			logger.error('form not valid', form);
+			return fail(400, { form });
+		}
+
+		// TODO CHECK PERMISION ON GROUP IM GOING TO UPDATE
+
+		try {
+			await updateGroup(event.locals.group, form.data);
+		} catch (e) {
+			return message(form, (e as Error).message, {
+				status: 403
+			});
+		}
+
+		return message(form, 'Group updated succesfully');
+	},
 
 	delete: async (event) => {
 		const data = Object.fromEntries(await event.request.formData());
+
+		// disable deletion in demo mode
+		if ('PUBLIC_DEMO_MODE' in env && env.PUBLIC_DEMO_MODE == 'true') {
+			return fail(403, { message: 'DISABLED IN DEMO MODE' });
+		}
+
+		// TODO CHECK PERMISION ON GROUP IM GOING TO DELETE
 		await deleteGroup(data.id.toString());
 	}
 };

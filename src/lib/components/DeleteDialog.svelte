@@ -33,7 +33,8 @@
 							toast.success('Deleted!');
 							// update();
 						} else {
-							toast.error('Error deleting ' + result.status);
+							console.log(result);
+							toast.error('Error deleting: ' + result.data.message);
 						}
 					};
 				}}
