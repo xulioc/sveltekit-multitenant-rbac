@@ -62,14 +62,19 @@ const accessHandler: Handle = async ({ event, resolve }) => {
 			}
 
 			event.locals.roles = await getGroupRoles(event.locals.user.id, event.locals.group);
+
+			// dont check permission for super user, give admin role and resolve
+			if (event.locals.user?.super) {
+				event.locals.roles = ['admin'];
+				return resolve(event);
+			}
+
 			// if the user has no roles in this group return error
 			if (!event.locals.roles.length) {
 				// event.cookies.delete('group', { httpOnly: false, path: '/' });
 				return error(403, 'User has no roles in this group.');
+				// TODO REDIRECT TO A SAFE PLACE
 			}
-
-			// dont check permission for super user and resolve
-			if (event.locals.user?.super) return resolve(event);
 
 			// check route permission
 			if (!rbacHasPermission(event.request.url, event.locals.roles)) {
