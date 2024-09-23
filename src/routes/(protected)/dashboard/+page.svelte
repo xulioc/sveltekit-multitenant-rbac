@@ -6,8 +6,6 @@
 	import { env } from '$env/dynamic/public';
 	import DashboardPage5 from '$lib/components/DashboardPage5.svelte';
 	import { toast } from 'svelte-sonner';
-
-	// console.log('PAGE DATA > ', $page.data);
 </script>
 
 <DashboardPage5>
