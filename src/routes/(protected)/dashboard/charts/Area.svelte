@@ -1,6 +1,6 @@
 <script>
 	import { scaleTime } from 'd3-scale';
-	import { Area, Axis, Chart, Highlight, Svg, Tooltip, TooltipItem } from 'layerchart';
+	import { Area, Axis, Chart, Highlight, Svg, Tooltip } from 'layerchart';
 	import area from './area.json';
 
 	const data = area.map((d) => {
@@ -35,8 +35,8 @@
 		</Svg>
 
 		<!-- header={(data) => formatDate(data.date, "eee, MMMM do")} -->
-		<Tooltip _variant="invert" let:data>
-			<TooltipItem label="Value" value={data.value} />
-		</Tooltip>
+		<Tooltip.Root _variant="invert" let:data>
+			<Tooltip.Item label="Value" value={data.value} />
+		</Tooltip.Root>
 	</Chart>
 </div>

@@ -48,10 +48,10 @@
 			<Highlight points lines />
 		</Svg>
 
-		<Tooltip header={(data) => dayjs(data.date).format('YYYY/MM/DD HH:MM')} let:data>
+		<Tooltip.Root header={(data) => dayjs(data.date).format('YYYY/MM/DD HH:MM')} let:data>
 			<!-- <TooltipItem label="value" value={data.value} /> -->
 			<p class="text-right">{data.value} ºC</p>
-		</Tooltip>
+		</Tooltip.Root>
 
 		<!-- <Tooltip _variant="" let:data>
 			<TooltipItem label="t" value={data.value + 'ºC'} />
