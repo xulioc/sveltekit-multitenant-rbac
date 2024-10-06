@@ -2,19 +2,19 @@
 import { github, lucia, signUp } from '$lib/server/auth';
 import { OAuth2RequestError } from 'arctic';
 
+import { SIGNUP_DISABLED } from '$lib/constants';
 import { db } from '$lib/server/db';
 import type { RequestEvent } from '@sveltejs/kit';
-import { generateIdFromEntropySize } from 'lucia';
 
 export async function GET(event: RequestEvent): Promise<Response> {
-	console.log('GITHUB');
+	// console.log('GITHUB');
 
 	const code = event.url.searchParams.get('code');
 	const state = event.url.searchParams.get('state');
 	const storedState = event.cookies.get('github_oauth_state') ?? null;
 
 	if (!code || !state || !storedState || state !== storedState) {
-		console.log('ERROR');
+		// console.log('ERROR');
 		return new Response(null, {
 			status: 400
 		});
@@ -22,7 +22,7 @@ export async function GET(event: RequestEvent): Promise<Response> {
 
 	try {
 		const tokens = await github.validateAuthorizationCode(code);
-		console.log('tokens > ', tokens);
+		// console.log('tokens > ', tokens);
 		const githubUserResponse = await fetch('https://api.github.com/user', {
 			headers: {
 				Authorization: `Bearer ${tokens.accessToken}`
@@ -38,9 +38,9 @@ export async function GET(event: RequestEvent): Promise<Response> {
 		const githubUserEmails = await githubUserEmailsResponse.json();
 		const userEmail = githubUserEmails.find((e) => e.primary && e.verified);
 
-		console.log('githubUser > ', githubUser);
-		console.log('githubUserEmail > ', githubUserEmails);
-		console.log('userEmail > ', userEmail);
+		// console.log('githubUser > ', githubUser);
+		// console.log('githubUserEmail > ', githubUserEmails);
+		// console.log('userEmail > ', userEmail);
 
 		// Replace this with your own DB client.
 		// const existingUser = await db.table("user").where("github_id", "=", githubUser.id).get();
@@ -48,7 +48,7 @@ export async function GET(event: RequestEvent): Promise<Response> {
 			where: (user, { eq }) => eq(user.githubId, githubUser.id)
 		});
 
-		console.log('existingUser > ', existingUser);
+		// console.log('existingUser > ', existingUser);
 
 		if (existingUser) {
 			const session = await lucia.createSession(existingUser.id, {});
@@ -58,12 +58,20 @@ export async function GET(event: RequestEvent): Promise<Response> {
 				...sessionCookie.attributes
 			});
 		} else {
+			if (SIGNUP_DISABLED) {
+				return new Response(null, {
+					status: 302,
+					headers: {
+						Location: '/auth'
+					}
+				});
+			}
 			// const userId = generateIdFromEntropySize(10); // 16 characters long
-			const userId = generateIdFromEntropySize(15);
+			// const userId = generateIdFromEntropySize(15);
 
 			const newUser = await signUp(userEmail.email, null, githubUser.id);
 
-			console.log('newUser > ', newUser);
+			// console.log('newUser > ', newUser);
 
 			const session = await lucia.createSession(newUser.id, {});
 			const sessionCookie = lucia.createSessionCookie(session.id);

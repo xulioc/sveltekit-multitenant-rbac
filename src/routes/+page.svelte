@@ -5,6 +5,7 @@
 
 	import LightSwitch from '$lib/components/LightSwitch.svelte';
 	import ScrollArea from '$lib/components/ui/scroll-area/scroll-area.svelte';
+	import { SIGNUP_DISABLED } from '$lib/constants';
 	import { LayoutGridIcon } from 'lucide-svelte';
 	import SvelteMarkdown from 'svelte-markdown';
 	import README from '../../README.md?raw';
@@ -66,7 +67,9 @@
 			</Button>
 
 			<Button on:click={() => goto('/auth/sign-in')}>Sign In</Button>
-			<Button on:click={() => goto('/auth/sign-up')} variant="outline">Sign Up</Button>
+			{#if !SIGNUP_DISABLED}
+				<Button on:click={() => goto('/auth/sign-up')} variant="outline">Sign Up</Button>
+			{/if}
 			<LightSwitch></LightSwitch>
 		</div>
 	</header>

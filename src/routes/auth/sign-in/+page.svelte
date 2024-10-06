@@ -4,6 +4,7 @@
 
 	import AuthForm from '$lib/components/AuthForm.svelte';
 	import OAuth from '$lib/components/OAuth.svelte';
+	import { SIGNUP_DISABLED } from '$lib/constants';
 	import { signInSchema } from '$lib/zodschemas/users.js';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
@@ -33,7 +34,7 @@
 		<Form.Control let:attrs>
 			<div class="flex items-center">
 				<Form.Label>Password</Form.Label>
-				<a href="/auth/password/reset" class="ml-auto inline-block text-sm underline">
+				<a href="/auth/password/reset" tabindex={-1} class="ml-auto inline-block text-sm underline">
 					Forgot your password?
 				</a>
 			</div>
@@ -52,10 +53,12 @@
 		<div class="w-full space-y-2">
 			<OAuth action="Sign in"></OAuth>
 
-			<div class="w-full text-center text-sm">
-				Don&apos;t have an account?
-				<a href="/auth/sign-up" class="underline"> Sign Up </a>
-			</div>
+			{#if !SIGNUP_DISABLED}
+				<div class="w-full text-center text-sm">
+					Don&apos;t have an account?
+					<a href="/auth/sign-up" class="underline"> Sign Up </a>
+				</div>
+			{/if}
 		</div>
 	{/snippet}
 </AuthForm>

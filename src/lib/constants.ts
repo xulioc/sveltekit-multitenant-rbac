@@ -12,8 +12,11 @@ import {
 } from 'lucide-svelte';
 
 export const BASE_URL = dev ? 'http://localhost:5173' : env.PUBLIC_BASE_URL;
+
 export const APP_NAME =
 	'PUBLIC_APP_NAME' in env ? env.PUBLIC_APP_NAME : 'Svelte MultiTenant RBAC Dashboard';
+
+export const SIGNUP_DISABLED = 'PUBLIC_SIGNUP_DISABLED' in env ? env.PUBLIC_SIGNUP_DISABLED : false;
 
 export const ROLES = [
 	{ rol: 'admin', label: 'Admin' },

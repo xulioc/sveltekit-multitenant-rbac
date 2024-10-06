@@ -2,9 +2,15 @@ import { env } from '$env/dynamic/private';
 import { APP_NAME, BASE_URL } from '$lib/constants';
 import { Resend } from 'resend';
 
-const resend = new Resend(env.PRIVATE_RESEND_API_KEY);
+const KEY = 'PRIVATE_RESEND_API_KEY' in env ? env.PRIVATE_RESEND_API_KEY : null;
+const resend = KEY ? new Resend(KEY) : null;
 
 export const sendEmail = async (to: string, subject: string, htmlContent: string) => {
+	if (!resend) {
+		console.log('email > ', htmlContent);
+		return;
+	}
+
 	try {
 		const response = await resend.emails.send({
 			from: env.PRIVATE_RESEND_SENDER, // must be verified with Resend
@@ -31,7 +37,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 
 // Send an email to welcome the new user
 export const sendWelcomeEmail = async (email: string) => {
-	const htmlEmail = `<p>Thanks for verifying your account with ${APP_NAME}.</p><p>You can now <a href="${BASE_URL}/auth/sign-in">sign in</a> to your account.</p>`;
+	const htmlEmail = `<p>Thanks for joining ${APP_NAME}.</p><p>You can now <a href="${BASE_URL}/auth/sign-in">sign in</a> to your account.</p>`;
 	const subject = `Welcome to ${APP_NAME}`;
 	const result = sendEmail(email, subject, htmlEmail);
 	return result;
@@ -44,6 +50,6 @@ export const sendPasswordResetEmail = async (to: string, token: string) => {
         <p>You can also visit the link below.< /p><p>${updatePasswordURL}</p > <p>If you did not request to change your password, you can disregard this email.</p>`;
 	const subject = `Change your password for ${APP_NAME}`;
 	const result = await sendEmail(to, subject, htmlEmail);
-	console.log('updatePasswordURL > ', updatePasswordURL);
+	// console.log('updatePasswordURL > ', updatePasswordURL);
 	return result;
 };

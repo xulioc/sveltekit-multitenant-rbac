@@ -1,3 +1,4 @@
+import { SIGNUP_DISABLED } from '$lib/constants';
 import { lucia, signUp } from '$lib/server/auth';
 import { logger } from '$lib/server/utils';
 import { signInSchema } from '$lib/zodschemas/users';
@@ -7,6 +8,10 @@ import { zod } from 'sveltekit-superforms/adapters';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
+	if (SIGNUP_DISABLED) {
+		redirect(302, '/auth');
+	}
+
 	if (event.locals.user) {
 		redirect(302, '/dashboard');
 	}
@@ -16,6 +21,10 @@ export const load: PageServerLoad = async (event) => {
 
 export const actions: Actions = {
 	default: async (event) => {
+		if (SIGNUP_DISABLED) {
+			redirect(302, '/auth');
+		}
+
 		const form = await superValidate(event, zod(signInSchema));
 		if (!form.valid) {
 			logger.error('form not valid', form);

@@ -222,7 +222,7 @@ export const getUsers = async (group: string | null = null) => {
 	} else {
 		// read all users
 		// console.log('read all users');
-		users = await db.query.user.findMany({
+		users = await db.query.userTable.findMany({
 			where: (user, { eq }) => eq(user.deleted, false),
 			columns: { password: false }
 		});
