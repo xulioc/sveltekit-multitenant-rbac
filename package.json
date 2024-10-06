@@ -98,6 +98,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"dotenv": "^16.4.5"
+		"arctic": "^1.9.2",
+		"dotenv": "^16.4.5",
+		"resend": "^4.0.0"
 	}
 }

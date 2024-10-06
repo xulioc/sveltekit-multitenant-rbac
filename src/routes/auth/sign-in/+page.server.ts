@@ -11,7 +11,6 @@ export const load: PageServerLoad = async (event) => {
 		// redirect user if already signed in
 		redirect(302, '/dashboard');
 	}
-
 	const signInForm = await superValidate(zod(signInSchema));
 	return { signInForm };
 };

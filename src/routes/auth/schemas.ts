@@ -1,5 +1,3 @@
-import { z } from 'zod';
-
 export const authSchema = z.object({
 	email: z
 		.string({ required_error: 'Email is required' })
@@ -37,5 +35,9 @@ export const signUpSchema = authSchema
 	});
 
 export const inviteSchema = authSchema.pick({
+	email: true
+});
+
+export const resetPasswordSchema = authSchema.pick({
 	email: true
 });
