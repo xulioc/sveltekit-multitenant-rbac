@@ -1,13 +1,13 @@
-import { PRIVATE_RESEND_API_KEY, PRIVATE_RESEND_SENDER } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { APP_NAME, BASE_URL } from '$lib/constants';
 import { Resend } from 'resend';
 
-const resend = new Resend(PRIVATE_RESEND_API_KEY);
+const resend = new Resend(env.PRIVATE_RESEND_API_KEY);
 
 export const sendEmail = async (to: string, subject: string, htmlContent: string) => {
 	try {
 		const response = await resend.emails.send({
-			from: PRIVATE_RESEND_SENDER, // must be verified with Resend
+			from: env.PRIVATE_RESEND_SENDER, // must be verified with Resend
 			to: to,
 			subject: subject,
 			html: htmlContent
