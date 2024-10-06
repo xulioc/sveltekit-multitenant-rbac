@@ -10,10 +10,10 @@
 	let { action }: Props = $props();
 </script>
 
-{#if 'PUBLIC_OAUTH_GITHUB' in env}
+{#if 'PUBLIC_OAUTH_GITHUB' in env && env.PUBLIC_OAUTH_GITHUB == 'true'}
 	<Button class="w-full" on:click={() => goto('/auth/oauth/github')}>{action} with Github</Button>
 {/if}
 
-{#if 'PUBLIC_OAUTH_GOOGLE' in env}
+{#if 'PUBLIC_OAUTH_GOOGLE' in env && env.PUBLIC_OAUTH_GOOGLE == 'true'}
 	<Button class="w-full" on:click={() => goto('/auth/oauth/google')}>{action} with Google</Button>
 {/if}
