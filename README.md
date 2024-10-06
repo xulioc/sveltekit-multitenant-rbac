@@ -35,6 +35,7 @@ DISCLAIMER: This project is not production ready. Svelte5 is not stable and RBAC
 - [Formsnap](https://www.formsnap.dev/) form building
 - [Layerchart](https://www.layerchart.com/) charts
 - [Lucide Icons](https://lucide.dev/) icon pack
+- [Resend](https://resend.com/) email service API
 - [Umami](https://umami.is/) analytics
 - [Vercel](https://vercel.com/) deployment platform
 
@@ -97,18 +98,14 @@ Feel free to contribute. Issues and Pull Requests are welcome.
 
 ## Resources
 
-- [sveltekit-auth](https://github.com/delay/sveltekit-auth) ![GitHub Repo stars](https://img.shields.io/github/stars/delay/sveltekit-auth?style=flat)
-
-- [sveltekit-supabase-dashboard](https://github.com/xulioc/sveltekit-supabase-dashboard) ![GitHub Repo stars](https://img.shields.io/github/stars/xulioc/sveltekit-supabase-dashboard?style=flat)
-
-- [auth-sveltekit](https://github.com/daedalus-developers/auth-sveltekit/) ![GitHub Repo stars](https://img.shields.io/github/stars/daedalus-developers/auth-sveltekit?style=flat)
-
-- [sveltekit-stackter](https://github.com/shamscorner/sveltekit-stackter) ![GitHub Repo stars](https://img.shields.io/github/stars/shamscorner/sveltekit-stackter?style=flat)
-
-- [saas-starter](https://github.com/startino/saas-starter) ![GitHub Repo stars](https://img.shields.io/github/stars/startino/saas-starter?style=flat)
-
-- [sveltekit-starter-svelte5](https://github.com/szig83/sveltekit-starter-svelte5) ![GitHub Repo stars](https://img.shields.io/github/stars/szig83/sveltekit-starter-svelte5?style=flat)
-
-- https://www.shadcn-svelte.com/blocks
-
-- https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf
+| Link                                                                                                 |                                                                                                                     |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [sveltekit-auth](https://github.com/delay/sveltekit-auth)                                            | ![GitHub Repo stars](https://img.shields.io/github/stars/delay/sveltekit-auth?style=flat)                           |
+| [sveltekit-supabase-dashboard](https://github.com/xulioc/sveltekit-supabase-dashboard)               | ![GitHub Repo stars](https://img.shields.io/github/stars/xulioc/sveltekit-supabase-dashboard?style=flat)            |
+| [auth-sveltekit](https://github.com/daedalus-developers/auth-sveltekit/)                             | ![GitHub Repo stars](https://img.shields.io/github/stars/edwardspresume/sveltekit-lucia-auth-v3-example?style=flat) |
+| [sveltekit-lucia-auth-v3-example](https://github.com/edwardspresume/sveltekit-lucia-auth-v3-example) | ![GitHub Repo stars](https://img.shields.io/github/stars/daedalus-developers/auth-sveltekit?style=flat)             |
+| [sveltekit-stackter](https://github.com/shamscorner/sveltekit-stackter)                              | ![GitHub Repo stars](https://img.shields.io/github/stars/shamscorner/sveltekit-stackter?style=flat)                 |
+| [saas-starter](https://github.com/startino/saas-starter)                                             | ![GitHub Repo stars](https://img.shields.io/github/stars/startino/saas-starter?style=flat)                          |
+| [sveltekit-starter-svelte5](https://github.com/szig83/sveltekit-starter-svelte5)                     | ![GitHub Repo stars](https://img.shields.io/github/stars/szig83/sveltekit-starter-svelte5?style=flat)               |
+| https://www.shadcn-svelte.com/blocks                                                                 |
+| https://dev.to/permify/implementing-role-based-access-control-in-sveltekit-56hf                      |

@@ -1,3 +1,5 @@
+import { dev } from '$app/environment';
+import { env } from '$env/dynamic/public';
 import {
 	Building,
 	CalendarSearch,
@@ -8,6 +10,10 @@ import {
 	User,
 	Users
 } from 'lucide-svelte';
+
+export const BASE_URL = dev ? 'http://localhost:5173' : env.PUBLIC_BASE_URL;
+export const APP_NAME =
+	'PUBLIC_APP_NAME' in env ? env.PUBLIC_APP_NAME : 'Svelte MultiTenant RBAC Dashboard';
 
 export const ROLES = [
 	{ rol: 'admin', label: 'Admin' },

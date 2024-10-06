@@ -8,6 +8,48 @@
       "when": 1727018997077,
       "tag": "0000_youthful_bastion",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1728121703133,
+      "tag": "0001_lovely_quasimodo",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1728202120766,
+      "tag": "0002_curly_skreet",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1728209881163,
+      "tag": "0003_brave_callisto",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1728210519990,
+      "tag": "0004_futuristic_vin_gonzales",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1728212479984,
+      "tag": "0005_lame_jack_flag",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1728212642624,
+      "tag": "0006_sturdy_thundra",
+      "breakpoints": true
     }
   ]
 }

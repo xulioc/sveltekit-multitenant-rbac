@@ -2,7 +2,7 @@
 	import { scaleBand } from 'd3-scale';
 	import { curveLinearClosed } from 'd3-shape';
 
-	import { Axis, Chart, Group, Points, Spline, Svg } from 'layerchart';
+	import { Axis, Chart, Points, Spline, Svg } from 'layerchart';
 
 	const pitchData = [
 		{
@@ -34,25 +34,23 @@
 		data={pitchData}
 		x="name"
 		xScale={scaleBand()}
-		xDomain={pitchData.map((d) => d.name)}
 		xRange={[0, 2 * Math.PI]}
 		y="value"
 		yRange={({ height }) => [0, height / 2]}
 		yPadding={[0, 10]}
 		padding={{ top: 32, bottom: 8 }}
+		radial
 	>
-		<Svg>
-			<Group center>
-				<Axis
-					placement="radius"
-					grid={{ class: 'stroke-surface-content/20 fill-surface-200/50' }}
-					ticks={[0, 5, 10]}
-					format={(d) => ''}
-				/>
-				<Axis placement="angle" grid={{ class: 'stroke-surface-content/20' }} />
-				<Spline radial {curve} class="fill-primary/20 stroke-primary" />
-				<Points radial class="fill-primary stroke-surface-200" />
-			</Group>
+		<Svg center>
+			<Axis
+				placement="radius"
+				grid={{ class: 'stroke-surface-content/20 fill-surface-200/50' }}
+				ticks={[0, 5, 10]}
+				format={(d) => ''}
+			/>
+			<Axis placement="angle" grid={{ class: 'stroke-surface-content/20' }} />
+			<Spline {curve} class="fill-primary/20 stroke-primary" />
+			<Points class="fill-primary stroke-surface-200" />
 		</Svg>
 	</Chart>
 </div>

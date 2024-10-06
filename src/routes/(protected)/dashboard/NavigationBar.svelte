@@ -75,9 +75,11 @@
 		<DropdownMenu.Content align="end">
 			<DropdownMenu.Label>{$page.data.user?.email}</DropdownMenu.Label>
 			<DropdownMenu.Separator />
-			<form method="POST" action="/auth/sign-out" use:enhance>
-				<DropdownMenu.Item><button>Sign out</button></DropdownMenu.Item>
-			</form>
+			<DropdownMenu.Item>
+				<form class="w-full" method="POST" action="/auth/sign-out" use:enhance>
+					<button class="w-full text-left"> Sign out </button>
+				</form>
+			</DropdownMenu.Item>
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
 </header>
