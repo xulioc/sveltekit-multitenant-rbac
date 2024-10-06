@@ -4,9 +4,9 @@
 
 	import AuthForm from '$lib/components/AuthForm.svelte';
 	import OAuth from '$lib/components/OAuth.svelte';
+	import { signInSchema } from '$lib/zodschemas/users.js';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { signInSchema } from '../schemas';
 
 	let { data } = $props();
 

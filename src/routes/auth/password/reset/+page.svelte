@@ -3,9 +3,9 @@
 	import Input from '$lib/components/ui/input/input.svelte';
 
 	import AuthForm from '$lib/components/AuthForm.svelte';
+	import { resetPasswordSchema } from '$lib/zodschemas/users.js';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { resetPasswordSchema } from '../../schemas';
 
 	let { data } = $props();
 

@@ -1,9 +1,9 @@
 import { getUserByEmail, updateUserToken } from '$lib/server/auth';
 import { sendPasswordResetEmail } from '$lib/server/email';
+import { resetPasswordSchema } from '$lib/zodschemas/users';
 import { redirect } from '@sveltejs/kit';
 import { fail, message, setError, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import { resetPasswordSchema } from '../../schemas';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {

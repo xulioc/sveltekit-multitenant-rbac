@@ -1,9 +1,9 @@
 import { lucia, signIn } from '$lib/server/auth';
 import { logger } from '$lib/server/utils';
+import { signInSchema } from '$lib/zodschemas/users';
 import { redirect, type Actions } from '@sveltejs/kit';
 import { fail, message, setError, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
-import { signInSchema } from '../schemas';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {

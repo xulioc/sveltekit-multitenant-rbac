@@ -84,6 +84,15 @@ export const newUserSchema = z.object({
 		.trim()
 });
 
+export const resetPasswordSchema = userSchema.pick({
+	email: true
+});
+
+export const signInSchema = userSchema.pick({
+	email: true,
+	password: true
+});
+
 // export const userUpdatePasswordSchema = userSchema
 // 	.pick({ password: true, confirmPassword: true })
 // 	.superRefine(({ confirmPassword, password }, ctx) => {
