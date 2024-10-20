@@ -25,10 +25,10 @@
 	{/snippet}
 </DashboardPage5>
 
-<style lang="postcss">
+<!-- <style lang="postcss">
 	.box {
 		@apply border-2;
 		@apply border-primary;
 		@apply px-2;
 	}
-</style>
+</style> -->

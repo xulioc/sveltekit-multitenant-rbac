@@ -23,7 +23,7 @@ export const getMyFirstGroup = async (userId: string) => {
 
 	// find the first not deleted group
 	const group = groups.find((g) => !g.group.deleted && !g.group.parent?.deleted);
-	if (dev) console.log('getMyFirstGroup > ', group);
+	// if (dev) console.log('getMyFirstGroup > ', group);
 
 	return group;
 };
@@ -36,7 +36,7 @@ export const getGroupRoles = async (userId: string, group: string) => {
 	});
 
 	if (res) {
-		if (dev) console.log('getGroupRoles > ', res);
+		// if (dev) console.log('getGroupRoles > ', res);
 		return Object.values(res.roles as Array<string>);
 	} else {
 		return [] as Array<string>;
@@ -70,7 +70,7 @@ export const getAllGroups = async () => {
 			}
 		}
 		const orderedGroups = flatGroups.sort();
-		if (dev) console.log('getAllGroups > ', orderedGroups);
+		// if (dev) console.log('getAllGroups > ', orderedGroups);
 		return orderedGroups;
 	} catch {
 		console.log('getAllGroups > ERROR');
@@ -154,7 +154,7 @@ export const getGroups = async (parent: string | null = null) => {
 			});
 		}
 
-		if (dev) console.log('getGroups > ', groups);
+		// if (dev) console.log('getGroups > ', groups);
 		return groups;
 	} catch (e) {
 		console.log('getGroups > ', (e as Error).message);
