@@ -228,7 +228,7 @@ export const getUsers = async (group: string | null = null) => {
 		});
 	}
 
-	if (dev) console.log('getUsers > ', users);
+	// if (dev) console.log('getUsers > ', users);
 	return users;
 };
 
