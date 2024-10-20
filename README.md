@@ -18,6 +18,7 @@ DISCLAIMER: This project is not production ready. Svelte5 is not stable and RBAC
 
 ## Features
 
+- Authentication (Email & GitHub OAuth)
 - [Multitenancy](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/static/doc/MT.md) (Groups & Organizations)
 - [Role Based Acces Control](https://github.com/xulioc/sveltekit-multitenant-rbac/blob/main/static/doc/RBAC.md) (RBAC)
 - [Soft deletion](https://en.wiktionary.org/wiki/soft_deletion)
